@@ -1,0 +1,181 @@
+# ============================================
+# Flutter/Dart Project .gitignore Template
+# ============================================
+
+# ============================================
+# Auto Generated Code
+# ============================================
+**/*.g.dart
+**/*.gr.dart
+**/*.freezed.dart
+**/*.graphql.dart
+**/generated_plugin_registrant.dart
+**/generated/**
+
+# ============================================
+# Build Artifacts
+# ============================================
+build/
+**/build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.packages.generated
+*.lock
+
+# ============================================
+# IDE & Editor Files
+# ============================================
+# IntelliJ / Android Studio
+*.iml
+*.ipr
+*.iws
+.idea/
+**/android/app/.cxx
+
+# VS Code
+.vscode/
+.classpath
+.project
+.settings/
+
+# ============================================
+# Platform Specific
+# ============================================
+
+# Android
+**/android/**/gradle-wrapper.jar
+.gradle/
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+**/android/key.properties
+*.jks
+*.keystore
+
+# iOS / macOS
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/*sync/
+**/ios/**/.sconsign.dblite
+**/ios/**/.tags*
+**/ios/**/.vagrant/
+**/ios/**/DerivedData/
+**/ios/**/Icon?
+**/ios/**/Pods/
+**/ios/**/.symlinks/
+**/ios/**/profile
+**/ios/**/xcuserdata
+**/ios/.generated/
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/ephemeral
+**/ios/Flutter/app.flx
+**/ios/Flutter/app.zip
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/ServiceDefinitions.json
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/Flutter/ephemeral/
+**/Pods/
+**/macos/Flutter/GeneratedPluginRegistrant.swift
+**/macos/Flutter/ephemeral
+**/xcuserdata/
+
+# ============================================
+# Testing & Coverage
+# ============================================
+coverage/
+**/coverage/
+test/.test_coverage.dart
+
+# ============================================
+# Environment & Secrets
+# ============================================
+.env
+.env.local
+.env.*.local
+**/key.properties
+*.pem
+*.key
+
+# ============================================
+# Version Control Tools
+# ============================================
+.fvm/
+.fvmrc.lock
+.swiftpm/
+migrate_working_dir/
+
+# ============================================
+# Logs & Temporary Files
+# ============================================
+*.log
+*.swp
+*.swo
+*~
+.DS_Store
+.history
+.svn/
+
+# ============================================
+# Documentation
+# ============================================
+**/doc/api/
+**/docs/doc/
+
+# ============================================
+# Symbols & Debugging
+# ============================================
+app.*.symbols
+app.*.map.json
+*.class
+
+# ============================================
+# Project Specific
+# ============================================
+# FVM (Flutter Version Management)
+.fvm/
+
+# AI Logs (if used)
+.ai_log
+.cursorrules
+CLAUDE.md
+.claudeignore
+.cursor/
+.claude/
+
+# Run configurations
+.run/
+!.run/*.run.xml
+
+# Monarch (if used)
+.monarch/
+
+# Vitreus generated
+**/generated/**
+
+# ============================================
+# Exceptions (Files that should NOT be ignored)
+# ============================================
+!**/ios/**/default.mode1v3
+!**/ios/**/default.mode2v3
+!**/ios/**/default.pbxuser
+!**/ios/**/default.perspectivev3
+!.fvmrc
+!.gitignore
+!.cursorrules
+!.claude/
+!.cursor/
+!.claude/
+!.cursor/
+!.vscode/

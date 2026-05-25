@@ -1,0 +1,24 @@
+name: navigation
+version: 0.0.1
+publish_to: none
+description: Project navigation module
+
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+resolution: workspace
+
+dependencies:
+  go_router: ^17.0.1
+  flutter:
+    sdk: flutter
+  core:
+    path: ../core
+  core_ui:
+    path: ../core_ui
+  domain:
+    path: ../domain
+  features:
+    path: ../features
+
+dev_dependencies:
+  flutter_lints: ^6.0.0

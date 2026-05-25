@@ -1,0 +1,9 @@
+{
+  "common": {
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark",
+    "russian": "Russian",
+    "english": "English"
+  }
+}

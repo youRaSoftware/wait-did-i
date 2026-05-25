@@ -1,0 +1,287 @@
+{
+  "color": {
+    "background": {
+      "primary": {
+        "value": "#0F0A0A",
+        "type": "color",
+        "description": "Main app background - dark theme"
+      },
+      "secondary": {
+        "value": "#1A1414",
+        "type": "color",
+        "description": "Secondary background"
+      },
+      "surface": {
+        "value": "#1E1515",
+        "type": "color",
+        "description": "Card surfaces"
+      },
+      "elevated": {
+        "value": "#252020",
+        "type": "color",
+        "description": "Elevated surfaces with shadow"
+      }
+    },
+    "text": {
+      "primary": {
+        "value": "#FAF5F5",
+        "type": "color",
+        "description": "Main text color - dark theme"
+      },
+      "secondary": {
+        "value": "#C4B5B5",
+        "type": "color",
+        "description": "Secondary text"
+      },
+      "tertiary": {
+        "value": "#7A6B6B",
+        "type": "color",
+        "description": "Tertiary text (captions, hints)"
+      },
+      "inverse": {
+        "value": "#1A0F0F",
+        "type": "color",
+        "description": "Text on light backgrounds"
+      },
+      "disabled": {
+        "value": "#7A6B6B",
+        "type": "color"
+      }
+    },
+    "brand": {
+      "coral": {
+        "value": "#FF9A8B",
+        "type": "color",
+        "description": "Primary brand color"
+      },
+      "peach": {
+        "value": "#FFD7A8",
+        "type": "color"
+      },
+      "lavender": {
+        "value": "#E8B4D1",
+        "type": "color"
+      },
+      "mint": {
+        "value": "#B8E6D4",
+        "type": "color"
+      },
+      "ocean": {
+        "value": "#87CEEB",
+        "type": "color"
+      }
+    },
+    "border": {
+      "default": {
+        "value": "rgba(255, 154, 139, 0.1)",
+        "type": "color",
+        "description": "Subtle border for dark theme"
+      },
+      "glass": {
+        "value": "rgba(255, 154, 139, 0.1)",
+        "type": "color",
+        "description": "Border for glass surfaces"
+      },
+      "focus": {
+        "value": "#FF9A8B",
+        "type": "color"
+      }
+    },
+    "glass": {
+      "surface": {
+        "value": "rgba(30, 21, 21, 0.8)",
+        "type": "color",
+        "description": "Glass surface with blur - dark theme"
+      },
+      "border": {
+        "value": "rgba(255, 154, 139, 0.1)",
+        "type": "color"
+      }
+    },
+    "state": {
+      "error": {
+        "value": "#FF6B6B",
+        "type": "color"
+      },
+      "success": {
+        "value": "#20D371",
+        "type": "color"
+      },
+      "warning": {
+        "value": "#FFB626",
+        "type": "color"
+      },
+      "info": {
+        "value": "#107BEC",
+        "type": "color"
+      }
+    }
+  },
+  "spacing": {
+    "xxs": {
+      "value": 4,
+      "type": "number"
+    },
+    "xs": {
+      "value": 8,
+      "type": "number"
+    },
+    "sm": {
+      "value": 12,
+      "type": "number"
+    },
+    "md": {
+      "value": 16,
+      "type": "number"
+    },
+    "lg": {
+      "value": 24,
+      "type": "number"
+    },
+    "xl": {
+      "value": 32,
+      "type": "number"
+    },
+    "xxl": {
+      "value": 48,
+      "type": "number"
+    },
+    "xxxl": {
+      "value": 64,
+      "type": "number"
+    },
+    "huge": {
+      "value": 80,
+      "type": "number"
+    }
+  },
+  "radius": {
+    "small": {
+      "value": 8,
+      "type": "number"
+    },
+    "medium": {
+      "value": 12,
+      "type": "number"
+    },
+    "large": {
+      "value": 16,
+      "type": "number"
+    },
+    "xlarge": {
+      "value": 24,
+      "type": "number"
+    },
+    "round": {
+      "value": 9999,
+      "type": "number"
+    }
+  },
+  "typography": {
+    "display-xl-size": {
+      "value": 48,
+      "type": "number"
+    },
+    "display-size": {
+      "value": 36,
+      "type": "number"
+    },
+    "headline-size": {
+      "value": 28,
+      "type": "number"
+    },
+    "title-size": {
+      "value": 24,
+      "type": "number"
+    },
+    "subtitle-size": {
+      "value": 20,
+      "type": "number"
+    },
+    "body-large-size": {
+      "value": 18,
+      "type": "number"
+    },
+    "body-size": {
+      "value": 16,
+      "type": "number"
+    },
+    "body-small-size": {
+      "value": 14,
+      "type": "number"
+    },
+    "caption-size": {
+      "value": 12,
+      "type": "number"
+    },
+    "overline-size": {
+      "value": 11,
+      "type": "number"
+    }
+  },
+  "font-family": {
+    "display": {
+      "value": "Playfair Display",
+      "type": "string"
+    },
+    "body": {
+      "value": "Inter",
+      "type": "string"
+    }
+  },
+  "font-weight": {
+    "light": {
+      "value": "300",
+      "type": "string"
+    },
+    "regular": {
+      "value": "400",
+      "type": "string"
+    },
+    "medium": {
+      "value": "500",
+      "type": "string"
+    },
+    "semibold": {
+      "value": "600",
+      "type": "string"
+    },
+    "bold": {
+      "value": "700",
+      "type": "string"
+    }
+  },
+  "animation": {
+    "duration-quick": {
+      "value": 100,
+      "type": "number",
+      "description": "100ms - quick interactions"
+    },
+    "duration-fast": {
+      "value": 200,
+      "type": "number",
+      "description": "200ms - fast transitions"
+    },
+    "duration-normal": {
+      "value": 300,
+      "type": "number",
+      "description": "300ms - normal animations"
+    },
+    "duration-slow": {
+      "value": 400,
+      "type": "number",
+      "description": "400ms - slower transitions"
+    },
+    "duration-slower": {
+      "value": 500,
+      "type": "number",
+      "description": "500ms - theme changes"
+    }
+  },
+  "theme": {
+    "is-dark": {
+      "value": "true",
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,410 @@
+{
+  "brand": {
+    "coral": {
+      "value": "#FF9A8B",
+      "type": "color",
+      "description": "Coral - энергия, радость, активность"
+    },
+    "coral-light": {
+      "value": "#FFB5A8",
+      "type": "color"
+    },
+    "peach": {
+      "value": "#FFD7A8",
+      "type": "color",
+      "description": "Peach - тепло, комфорт, оптимизм"
+    },
+    "peach-light": {
+      "value": "#FFE5C4",
+      "type": "color"
+    },
+    "lavender": {
+      "value": "#E8B4D1",
+      "type": "color",
+      "description": "Lavender - спокойствие, интроспекция, мечтательность"
+    },
+    "lavender-light": {
+      "value": "#F0C8DE",
+      "type": "color"
+    },
+    "mint": {
+      "value": "#B8E6D4",
+      "type": "color",
+      "description": "Mint - свежесть, баланс, надежда"
+    },
+    "mint-light": {
+      "value": "#D0F0E6",
+      "type": "color"
+    },
+    "ocean": {
+      "value": "#87CEEB",
+      "type": "color",
+      "description": "Ocean - дополнительный акцент"
+    }
+  },
+  "neutral": {
+    "white": {
+      "value": "#FFFFFF",
+      "type": "color"
+    },
+    "warm-white": {
+      "value": "#FFFBF8",
+      "type": "color",
+      "description": "Тёплый белый для фонов"
+    },
+    "soft-white": {
+      "value": "#FFF5F0",
+      "type": "color"
+    },
+    "soft-peach": {
+      "value": "#FFFAFA",
+      "type": "color"
+    },
+    "deep-brown": {
+      "value": "#1A0F0F",
+      "type": "color",
+      "description": "Глубокий коричневый для текста (light theme)"
+    },
+    "dark-slate": {
+      "value": "#2D1B1B",
+      "type": "color",
+      "description": "Тёмный сланец для основного текста"
+    },
+    "warm-gray": {
+      "value": "#5C4A4A",
+      "type": "color",
+      "description": "Тёплый серый для вторичного текста"
+    },
+    "muted": {
+      "value": "#8B7575",
+      "type": "color",
+      "description": "Приглушённый для третичного текста"
+    },
+    "light-gray": {
+      "value": "#CCCCCC",
+      "type": "color"
+    },
+    "border-light": {
+      "value": "#E0E0E0",
+      "type": "color"
+    },
+    "deep-warm": {
+      "value": "#0F0A0A",
+      "type": "color",
+      "description": "Тёмный тёплый для dark theme background"
+    },
+    "elevated-dark": {
+      "value": "#1E1515",
+      "type": "color",
+      "description": "Приподнятая тёмная поверхность"
+    },
+    "surface-dark": {
+      "value": "#1A1414",
+      "type": "color"
+    },
+    "surface-dark-elevated": {
+      "value": "#252020",
+      "type": "color"
+    },
+    "soft-white-text": {
+      "value": "#FAF5F5",
+      "type": "color",
+      "description": "Мягкий белый для текста (dark theme)"
+    },
+    "warm-light-text": {
+      "value": "#C4B5B5",
+      "type": "color",
+      "description": "Тёплый светлый для вторичного текста (dark)"
+    },
+    "muted-dark": {
+      "value": "#7A6B6B",
+      "type": "color",
+      "description": "Приглушённый для третичного текста (dark)"
+    }
+  },
+  "supportive": {
+    "error": {
+      "value": "#FF6B6B",
+      "type": "color",
+      "description": "Приглушённый красный для ошибок"
+    },
+    "success": {
+      "value": "#20D371",
+      "type": "color"
+    },
+    "warning": {
+      "value": "#FFB626",
+      "type": "color"
+    },
+    "info": {
+      "value": "#107BEC",
+      "type": "color"
+    }
+  },
+  "spacing": {
+    "xxs": {
+      "value": 4,
+      "type": "number",
+      "description": "4dp"
+    },
+    "xs": {
+      "value": 8,
+      "type": "number",
+      "description": "8dp"
+    },
+    "sm": {
+      "value": 12,
+      "type": "number",
+      "description": "12dp"
+    },
+    "md": {
+      "value": 16,
+      "type": "number",
+      "description": "16dp"
+    },
+    "lg": {
+      "value": 24,
+      "type": "number",
+      "description": "24dp"
+    },
+    "xl": {
+      "value": 32,
+      "type": "number",
+      "description": "32dp"
+    },
+    "xxl": {
+      "value": 48,
+      "type": "number",
+      "description": "48dp"
+    },
+    "xxxl": {
+      "value": 64,
+      "type": "number",
+      "description": "64dp"
+    },
+    "huge": {
+      "value": 80,
+      "type": "number",
+      "description": "80dp"
+    }
+  },
+  "radius": {
+    "small": {
+      "value": 8,
+      "type": "number",
+      "description": "8dp - мелкие элементы (chips, badges)"
+    },
+    "medium": {
+      "value": 12,
+      "type": "number",
+      "description": "12dp - кнопки, inputs"
+    },
+    "large": {
+      "value": 16,
+      "type": "number",
+      "description": "16dp - карточки"
+    },
+    "xlarge": {
+      "value": 24,
+      "type": "number",
+      "description": "24dp - модальные окна, большие карточки"
+    },
+    "round": {
+      "value": 9999,
+      "type": "number",
+      "description": "9999dp - pills, circular buttons"
+    }
+  },
+  "typography": {
+    "display-xl": {
+      "value": 48,
+      "type": "number",
+      "description": "Display XL - 48sp"
+    },
+    "display": {
+      "value": 36,
+      "type": "number",
+      "description": "Display - 36sp"
+    },
+    "headline": {
+      "value": 28,
+      "type": "number",
+      "description": "Headline - 28sp"
+    },
+    "title": {
+      "value": 24,
+      "type": "number",
+      "description": "Title - 24sp"
+    },
+    "subtitle": {
+      "value": 20,
+      "type": "number",
+      "description": "Subtitle - 20sp"
+    },
+    "body-large": {
+      "value": 18,
+      "type": "number",
+      "description": "Body Large - 18sp"
+    },
+    "body": {
+      "value": 16,
+      "type": "number",
+      "description": "Body - 16sp"
+    },
+    "body-small": {
+      "value": 14,
+      "type": "number",
+      "description": "Body Small - 14sp"
+    },
+    "caption": {
+      "value": 12,
+      "type": "number",
+      "description": "Caption - 12sp"
+    },
+    "overline": {
+      "value": 11,
+      "type": "number",
+      "description": "Overline - 11sp"
+    }
+  },
+  "font-weight": {
+    "light": {
+      "value": "300",
+      "type": "string"
+    },
+    "regular": {
+      "value": "400",
+      "type": "string"
+    },
+    "medium": {
+      "value": "500",
+      "type": "string"
+    },
+    "semibold": {
+      "value": "600",
+      "type": "string"
+    },
+    "bold": {
+      "value": "700",
+      "type": "string"
+    }
+  },
+  "line-height": {
+    "tight": {
+      "value": 1.1,
+      "type": "number"
+    },
+    "snug": {
+      "value": 1.2,
+      "type": "number"
+    },
+    "normal": {
+      "value": 1.3,
+      "type": "number"
+    },
+    "relaxed": {
+      "value": 1.4,
+      "type": "number"
+    },
+    "loose": {
+      "value": 1.5,
+      "type": "number"
+    }
+  },
+  "letter-spacing": {
+    "tight": {
+      "value": -0.02,
+      "type": "number"
+    },
+    "normal": {
+      "value": 0,
+      "type": "number"
+    },
+    "relaxed": {
+      "value": 0.01,
+      "type": "number"
+    },
+    "wide": {
+      "value": 0.02,
+      "type": "number"
+    },
+    "wider": {
+      "value": 0.04,
+      "type": "number"
+    },
+    "widest": {
+      "value": 0.08,
+      "type": "number"
+    }
+  },
+  "opacity": {
+    "glass": {
+      "value": 0.7,
+      "type": "number",
+      "description": "Glassmorphism opacity"
+    },
+    "glass-dark": {
+      "value": 0.8,
+      "type": "number",
+      "description": "Glassmorphism opacity for dark theme"
+    },
+    "overlay": {
+      "value": 0.6,
+      "type": "number"
+    },
+    "disabled": {
+      "value": 0.4,
+      "type": "number"
+    },
+    "subtle": {
+      "value": 0.15,
+      "type": "number"
+    }
+  },
+  "blur": {
+    "glass": {
+      "value": 20,
+      "type": "number",
+      "description": "Blur for glassmorphism"
+    },
+    "soft": {
+      "value": 8,
+      "type": "number"
+    },
+    "medium": {
+      "value": 12,
+      "type": "number"
+    },
+    "strong": {
+      "value": 40,
+      "type": "number"
+    }
+  },
+  "animation": {
+    "duration-quick": {
+      "value": 100,
+      "type": "number",
+      "description": "100ms - quick interactions"
+    },
+    "duration-fast": {
+      "value": 200,
+      "type": "number",
+      "description": "200ms - fast transitions"
+    },
+    "duration-normal": {
+      "value": 300,
+      "type": "number",
+      "description": "300ms - normal animations"
+    },
+    "duration-slow": {
+      "value": 400,
+      "type": "number",
+      "description": "400ms - slower transitions"
+    },
+    "duration-slower": {
+      "value": 500,
+      "type": "number",
+      "description": "500ms - theme changes"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+name: wait_did_i
+description: A calm home checklist app that helps you remember if you locked the door, turned off the stove, and closed the windows — with optional photo proof.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+  flutter: '>=3.32.0'
+
+workspace:
+  - core
+  - core_ui
+  - data
+  - domain
+  - features
+  - navigation
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  core:
+    path: ./core
+  core_ui:
+    path: ./core_ui
+  data:
+    path: ./data
+  domain:
+    path: ./domain
+  features:
+    path: ./features
+  navigation:
+    path: ./navigation
+
+  flutter_native_splash: ^2.4.6
+  flutter_launcher_icons: ^0.14.4
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  build_runner: ^2.7.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: Playfair Display
+      fonts:
+        - asset: core/resources/fonts/PlayfairDisplay-SemiBold.ttf
+          weight: 600
+        - asset: core/resources/fonts/PlayfairDisplay-Bold.ttf
+          weight: 700
+
+    - family: Inter
+      fonts:
+        - asset: core/resources/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: core/resources/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: core/resources/fonts/Inter-SemiBold.ttf
+          weight: 600

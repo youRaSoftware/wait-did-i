@@ -1,0 +1,8 @@
+{
+  "tokenSetOrder": [
+    "global",
+    "primitives/mobile",
+    "tokens/light",
+    "tokens/dark"
+  ]
+}

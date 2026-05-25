@@ -1,0 +1,332 @@
+# Flutter Clean Architecture Project - Philosophy & Rules
+
+> **This is a template `.cursorrules` file for new Flutter projects using Clean Architecture.**
+> 
+> **Copy this file to project root as `.cursorrules` and customize for your project.**
+> 
+> **Reference Files**: See `.cursor/` directory for detailed guides:
+> - `.cursor/reference/structure.md` - Package structure guide
+> - `.cursor/reference/setup-guide.md` - Setup instructions
+> - `.cursor/templates/` - Configuration templates
+> - `.cursor/README.md` - Complete directory structure
+
+## Project Philosophy
+
+This project follows **Clean Architecture** principles with a focus on:
+
+1. **Separation of Concerns**: Each layer has a single, well-defined responsibility
+2. **Dependency Inversion**: High-level modules don't depend on low-level modules
+3. **Testability**: Architecture supports easy unit and integration testing
+4. **Maintainability**: Clear structure and naming conventions
+5. **Scalability**: Feature-based structure allows easy feature addition
+6. **Type Safety**: Explicit types everywhere, no `var` or implicit types
+7. **Immutability**: Immutable models and states by default
+
+## Architecture Overview
+
+### Clean Architecture Layers
+
+```
+┌─────────────────────────────────────┐
+│      Presentation (features)        │  ← UI, Screens, Cubits/Blocs
+├─────────────────────────────────────┤
+│         Domain (domain)              │  ← Business Logic, Models, Interfaces
+├─────────────────────────────────────┤
+│          Data (data)                │  ← Repository Implementations, DTOs
+├─────────────────────────────────────┤
+│      Core (core, core_ui)           │  ← Shared Infrastructure, Services
+└─────────────────────────────────────┘
+```
+
+### Workspace Packages
+
+1. **core** - Core utilities, services, configuration, shared infrastructure
+2. **core_ui** - Reusable UI components, widgets, theme system
+3. **domain** - Business logic layer: models, repository interfaces, services
+4. **data** - Data layer: repository implementations, data providers, DTOs, mappers
+5. **features** - Presentation layer: screens, forms, cubits/blocs, feature widgets
+6. **navigation** - Navigation configuration and routing setup
+
+### Dependency Flow
+
+```
+features → domain ← data
+    ↓         ↑
+core_ui →  core
+```
+
+**Rules**:
+- **features** depends on: domain, core_ui, navigation, core
+- **domain** depends on: core (only) - NO dependencies on data or features
+- **data** depends on: domain, core
+- **core_ui** depends on: core
+- **navigation** depends on: core, features
+
+## Core Principles
+
+### 1. Dependency Injection
+
+- **Container**: GetIt (`appLocator`)
+- **Single Entry Point**: `setupUnAuthScope(Flavor)` in `core/lib/di/app_di.dart`
+- **Scoped DI**: Uses GetIt scopes for lifecycle management
+  - `unauthScope`: Pre-login dependencies
+  - `authScope`: Post-login dependencies
+- **Service Pattern**: Entry Point Services (God Services) manage scopes and dependent services
+
+### 2. State Management
+
+- **Pattern**: BLoC/Cubit with `flutter_bloc` package
+- **State Rules**:
+  - All fields must be non-nullable (no `?` nullable types)
+  - **Simple types** (bool, String, int, double, List): Use default values in constructor
+  - **Complex models**: Must be `required` and initialized with `.empty()` factory
+  - Use `Equatable` for value equality
+  - Implement `copyWith` method
+
+### 3. Models
+
+#### Domain Models (`*Model` suffix)
+- Use Freezed with `@freezed` annotation
+- Immutable with `const` constructors
+- Factory constructors: `empty()`, `mock()` (when needed)
+- All fields are named parameters
+- Example:
+```dart
+@freezed
+abstract class UserModel with _$UserModel {
+  const factory UserModel({
+    required String id,
+    required String email,
+  }) = _UserModel;
+  
+  const UserModel._();
+  
+  factory UserModel.empty() => const UserModel(id: '', email: '');
+}
+```
+
+#### DTOs (`*Dto` suffix)
+- Use `json_annotation` with `@Default` for all fields
+- All fields must be non-nullable with `@Default` values
+- Example:
+```dart
+@freezed
+abstract class UserDto with _$UserDto {
+  const factory UserDto({
+    @Default('') String id,
+    @Default('') String email,
+  }) = _UserDto;
+  
+  const UserDto._();
+  
+  factory UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
+}
+```
+
+### 4. Services
+
+#### Entry Point Service (God Service)
+- Singleton pattern with async `initialize` getter
+- Called from `app_di.dart`: `await ServiceName.instance.initialize`
+- Manages scopes: `goToAuthScope()` / `dropAuthScope()`
+- Initializes/resets dependent services
+- Example: `AuthService`
+
+#### Regular Service
+- Singleton pattern with simple `init()` method
+- NOT called from `app_di.dart` - initialized by entry point service
+- No scope management
+- Has `reset()` method for cleanup
+- Examples: `WelcomeScreenService`, `UserProfileService`
+
+### 5. Repository Pattern
+
+- **Interfaces**: Abstract interfaces in `domain/lib/repositories/`
+- **Implementations**: Concrete implementations in `data/lib/repositories/`
+- **Pattern**: Repository combines multiple data sources (API, local storage)
+- **Mapping**: DTOs → Domain Models via mappers
+
+### 6. Routing
+
+- **Package**: `auto_route` with code generation
+- **Configuration**: `@AutoRouterConfig` in `features/lib/features.dart`
+- **Route Pages**: `@RoutePage()` annotation on screen widgets
+- **Tab Navigation**: `AutoTabsScaffold` with `NavigationTabsEnum`
+- **Router Access**: Via DI `appLocator<AppRouter>()`
+
+### 7. Code Style
+
+#### Type Safety
+- **ALWAYS** use explicit types - NO `var`, NO implicit types
+- All function parameters and return types must be explicit
+- Example: `final String name = 'John';` NOT `var name = 'John';`
+
+#### Named Parameters
+- **ALL** fields in classes must be named parameters
+- Example: `UserModel({required String id})` NOT `UserModel(String id)`
+
+#### File Organization
+- One file = one widget (for UI components)
+- Screen vs Form pattern: `*_screen.dart` (BlocProvider) + `*_form.dart` (UI)
+- Feature structure: `cubit/`, `screen/`, `widgets/`
+
+### 8. Assets & Localization
+
+#### Assets
+- **Package**: `flutter_gen` (dev dependency)
+- **Location**: `core/resources/`
+- **Generated Class**: `AppAssets` in `core/lib/assets_gen/assets.gen.dart`
+- **Usage**: `AppAssets.resourcesIconsPngBarcode`
+
+#### Localization
+- **Package**: `easy_localization`
+- **Location**: `core/resources/translations/{locale}.json`
+- **Generated Keys**: `LocaleKeys` class
+- **Usage**: `context.tr(LocaleKeys.common_next)` or `LocaleKeys.common_next.tr()`
+
+### 9. Code Generation
+
+Run after changes:
+```bash
+flutter pub run build_runner build --delete-conflicting-outputs
+```
+
+Generates:
+- Freezed models: `[model]_model.freezed.dart`
+- JSON serialization: `[dto]_dto.g.dart`
+- AutoRoute: `features.gr.dart`, `app_router.gr.dart`
+- Assets: `assets.gen.dart` (via `fluttergen`)
+- Localization: `locale_keys.g.dart` (via `easy_localization:generate`)
+
+## Project Structure
+
+```
+project_root/
+├── lib/                          # Root application entry
+│   ├── main.dart                # Gets flavor from environment
+│   ├── main_common.dart         # Single entry point
+│   └── app.dart                 # Root app widget
+│
+├── core/                         # Core package
+│   ├── lib/
+│   │   ├── core.dart            # Barrel export
+│   │   ├── assets_gen/          # Generated assets
+│   │   ├── config/              # App configuration, flavors
+│   │   ├── di/                  # Dependency injection
+│   │   ├── localization/        # Localization enum, keys
+│   │   ├── service/             # Platform services
+│   │   └── utils/               # Utility functions
+│   └── resources/               # Assets (fonts, icons, translations)
+│
+├── core_ui/                     # Core UI package
+│   └── lib/
+│       ├── core_ui.dart        # Barrel export
+│       ├── theme/               # Theme system
+│       └── widgets/             # Reusable UI components
+│
+├── domain/                      # Domain package
+│   └── lib/
+│       ├── domain.dart         # Barrel export
+│       ├── models/             # Domain models (Freezed)
+│       ├── repositories/       # Repository interfaces
+│       └── service/            # Business logic services
+│
+├── data/                        # Data package
+│   └── lib/
+│       ├── data.dart           # Barrel export
+│       ├── di/                 # Data layer DI
+│       ├── dto/                # Data Transfer Objects
+│       ├── mappers/            # DTO to Model mappers
+│       └── providers/          # API and local providers
+│
+├── features/                     # Features package
+│   └── lib/
+│       ├── features.dart       # Barrel export + FeaturesModule
+│       └── [feature_name]/     # Feature modules
+│           ├── cubit/          # State management
+│           ├── screen/         # Screens and forms
+│           └── widgets/        # Feature-specific widgets
+│
+└── navigation/                   # Navigation package
+    └── lib/
+        ├── navigation.dart     # Barrel export
+        └── src/
+            ├── app_router/     # Router configuration
+            └── services/       # Navigation services
+```
+
+## Key Rules Summary
+
+1. ✅ **All types explicit** - NO `var`, NO implicit types
+2. ✅ **All fields named parameters** - In all classes
+3. ✅ **Models use Freezed** - `*Model` suffix, immutable
+4. ✅ **DTOs use @Default** - `*Dto` suffix, all fields non-nullable
+5. ✅ **States non-nullable** - Simple types with defaults, complex models `required`
+6. ✅ **Services are singletons** - Entry Point Services manage scopes
+7. ✅ **One file = one widget** - For UI components
+8. ✅ **Screen vs Form pattern** - Separate BlocProvider and UI
+9. ✅ **Repository pattern** - Interfaces in domain, implementations in data
+10. ✅ **Dependency inversion** - Domain doesn't depend on data or features
+
+## Development Workflow
+
+### Creating a New Feature
+
+1. Create structure in `features/lib/[feature_name]/`
+2. Create domain model in `domain/lib/models/[feature]/`
+3. Create repository interface in `domain/lib/repositories/`
+4. Create repository implementation in `data/lib/repositories/`
+5. Create DTO and mapper in `data/lib/`
+6. Create service in `domain/lib/service/` (if needed)
+7. Create cubit and state in `features/lib/[feature_name]/cubit/`
+8. Create screen and form in `features/lib/[feature_name]/screen/`
+9. Add route in `features/lib/features.dart` with `@RoutePage()`
+10. Run code generation: `flutter pub run build_runner build --delete-conflicting-outputs`
+
+### Adding a New Domain Model
+
+1. Create model in `domain/lib/models/[feature]/[model]_model.dart`
+2. Use Freezed with `@freezed` annotation
+3. Add `empty()` factory constructor
+4. Run code generation for Freezed
+
+### Adding a New Repository
+
+1. Create interface in `domain/lib/repositories/[feature]_repository.dart`
+2. Create implementation in `data/lib/repositories/[feature]_repository_impl.dart`
+3. Register in `data/lib/di/data_di.dart`
+
+## Testing Considerations
+
+- Domain layer should be testable without Flutter dependencies
+- Repository interfaces allow easy mocking
+- Services can be tested independently
+- Cubits can be tested with `bloc_test` package
+- Use dependency injection for testability
+
+## Build Configuration
+
+- Use workspace structure for multi-package setup
+- Each package has its own `pubspec.yaml`
+- Root `pubspec.yaml` defines workspace packages
+- Use `build_runner` for code generation
+- Flavors via environment variable: `--dart-define=environment=[flavor]`
+
+## Common Patterns
+
+- **Repository Pattern**: Abstract data access in domain, implement in data
+- **Service Pattern**: Business logic orchestration in domain services
+- **BLoC/Cubit Pattern**: State management in presentation layer
+- **Singleton Pattern**: Services and some utilities
+- **Factory Pattern**: Model creation (empty, mock factories)
+- **Mapper Pattern**: Transform between DTOs and domain models
+- **Provider Pattern**: Data providers for API and local storage
+- **Dependency Injection**: GetIt with scoped registration
+
+## Notes
+
+> **This file should be updated as the project evolves.**
+> 
+> Add project-specific patterns, decisions, and conventions here.
+> 
+> Keep it as a living document that reflects the actual project state.

@@ -1,0 +1,24 @@
+[
+  {
+    "id": "light",
+    "name": "Light",
+    "selectedTokenSets": {
+      "global": "enabled",
+      "primitives/mobile": "enabled",
+      "tokens/light": "enabled",
+      "tokens/dark": "disabled"
+    },
+    "$figmaStyleReferences": {}
+  },
+  {
+    "id": "dark",
+    "name": "Dark",
+    "selectedTokenSets": {
+      "global": "enabled",
+      "primitives/mobile": "enabled",
+      "tokens/dark": "enabled",
+      "tokens/light": "disabled"
+    },
+    "$figmaStyleReferences": {}
+  }
+]
