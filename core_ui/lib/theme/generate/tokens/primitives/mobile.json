@@ -1,45 +1,45 @@
 {
   "brand": {
     "coral": {
-      "value": "#FF9A8B",
+      "value": "#5A9BD4",
       "type": "color",
-      "description": "Coral - энергия, радость, активность"
+      "description": "Акцент — основной спокойный голубой"
     },
     "coral-light": {
-      "value": "#FFB5A8",
+      "value": "#8FBDE0",
       "type": "color"
     },
     "peach": {
-      "value": "#FFD7A8",
+      "value": "#7BB0DD",
       "type": "color",
-      "description": "Peach - тепло, комфорт, оптимизм"
+      "description": "Светлый голубой акцент"
     },
     "peach-light": {
-      "value": "#FFE5C4",
+      "value": "#A9CCE9",
       "type": "color"
     },
     "lavender": {
-      "value": "#E8B4D1",
+      "value": "#6E8CAD",
       "type": "color",
-      "description": "Lavender - спокойствие, интроспекция, мечтательность"
+      "description": "Спокойный сине-серый, интроспекция"
     },
     "lavender-light": {
-      "value": "#F0C8DE",
+      "value": "#9FB3CB",
       "type": "color"
     },
     "mint": {
-      "value": "#B8E6D4",
+      "value": "#68C58F",
       "type": "color",
-      "description": "Mint - свежесть, баланс, надежда"
+      "description": "Готово — мягкий зелёный"
     },
     "mint-light": {
-      "value": "#D0F0E6",
+      "value": "#9BD9B5",
       "type": "color"
     },
     "ocean": {
-      "value": "#87CEEB",
+      "value": "#4F86C6",
       "type": "color",
-      "description": "Ocean - дополнительный акцент"
+      "description": "Дополнительный, более глубокий голубой"
     }
   },
   "neutral": {
@@ -48,96 +48,96 @@
       "type": "color"
     },
     "warm-white": {
-      "value": "#FFFBF8",
+      "value": "#F4F7F9",
       "type": "color",
-      "description": "Тёплый белый для фонов"
+      "description": "Основной фон приложения"
     },
     "soft-white": {
-      "value": "#FFF5F0",
+      "value": "#ECF1F5",
       "type": "color"
     },
     "soft-peach": {
-      "value": "#FFFAFA",
+      "value": "#F8FAFB",
       "type": "color"
     },
     "deep-brown": {
-      "value": "#1A0F0F",
+      "value": "#2D3748",
       "type": "color",
-      "description": "Глубокий коричневый для текста (light theme)"
+      "description": "Основной текст (light theme)"
     },
     "dark-slate": {
-      "value": "#2D1B1B",
+      "value": "#1A202C",
       "type": "color",
-      "description": "Тёмный сланец для основного текста"
+      "description": "Самый тёмный текст"
     },
     "warm-gray": {
-      "value": "#5C4A4A",
+      "value": "#718096",
       "type": "color",
-      "description": "Тёплый серый для вторичного текста"
+      "description": "Вторичный текст"
     },
     "muted": {
-      "value": "#8B7575",
+      "value": "#A0AEC0",
       "type": "color",
-      "description": "Приглушённый для третичного текста"
+      "description": "Третичный текст"
     },
     "light-gray": {
-      "value": "#CCCCCC",
+      "value": "#CBD5E0",
       "type": "color"
     },
     "border-light": {
-      "value": "#E0E0E0",
+      "value": "#E2E8F0",
       "type": "color"
     },
     "deep-warm": {
-      "value": "#0F0A0A",
+      "value": "#0F1419",
       "type": "color",
-      "description": "Тёмный тёплый для dark theme background"
+      "description": "Фон dark theme"
     },
     "elevated-dark": {
-      "value": "#1E1515",
+      "value": "#1E2530",
       "type": "color",
       "description": "Приподнятая тёмная поверхность"
     },
     "surface-dark": {
-      "value": "#1A1414",
+      "value": "#1A202C",
       "type": "color"
     },
     "surface-dark-elevated": {
-      "value": "#252020",
+      "value": "#252E3A",
       "type": "color"
     },
     "soft-white-text": {
-      "value": "#FAF5F5",
+      "value": "#F7FAFC",
       "type": "color",
-      "description": "Мягкий белый для текста (dark theme)"
+      "description": "Основной текст (dark theme)"
     },
     "warm-light-text": {
-      "value": "#C4B5B5",
+      "value": "#B4C0CE",
       "type": "color",
-      "description": "Тёплый светлый для вторичного текста (dark)"
+      "description": "Вторичный текст (dark)"
     },
     "muted-dark": {
-      "value": "#7A6B6B",
+      "value": "#718096",
       "type": "color",
-      "description": "Приглушённый для третичного текста (dark)"
+      "description": "Третичный текст (dark)"
     }
   },
   "supportive": {
     "error": {
-      "value": "#FF6B6B",
+      "value": "#E07A7A",
       "type": "color",
-      "description": "Приглушённый красный для ошибок"
+      "description": "Мягкий приглушённый — для редких ошибок форм, не алармный"
     },
     "success": {
-      "value": "#20D371",
+      "value": "#68C58F",
       "type": "color"
     },
     "warning": {
-      "value": "#FFB626",
+      "value": "#E8B860",
       "type": "color"
     },
     "info": {
-      "value": "#107BEC",
+      "value": "#5A9BD4",
       "type": "color"
     }
   },

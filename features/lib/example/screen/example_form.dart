@@ -28,8 +28,9 @@ class ExampleForm extends StatelessWidget {
             Text('ID: ${state.example.id}'),
             Text('Title: ${state.example.title}'),
             Text('Description: ${state.example.description}'),
-            PrimaryButton(
+            AppButton(
               text: 'Reload',
+              isExpanded: false,
               onPressed: () {
                 context.read<ExampleCubit>().loadExample();
               },

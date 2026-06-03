@@ -2,7 +2,7 @@
   "shadow": {
     "elevation-1": {
       "value": {
-        "color": "#1A0F0F0F",
+        "color": "#2D37480F",
         "type": "dropShadow",
         "x": 0,
         "y": 4,
@@ -14,7 +14,7 @@
     },
     "elevation-2": {
       "value": {
-        "color": "#1A0F0F1A",
+        "color": "#2D37481A",
         "type": "dropShadow",
         "x": 0,
         "y": 8,
@@ -26,7 +26,7 @@
     },
     "elevation-3": {
       "value": {
-        "color": "#1A0F0F26",
+        "color": "#2D374826",
         "type": "dropShadow",
         "x": 0,
         "y": 16,
@@ -38,7 +38,7 @@
     },
     "glow-primary": {
       "value": {
-        "color": "#FF9A8B66",
+        "color": "#5A9BD466",
         "type": "dropShadow",
         "x": 0,
         "y": 0,
@@ -50,7 +50,7 @@
     },
     "glow-secondary": {
       "value": {
-        "color": "#E8B4D14D",
+        "color": "#68C58F4D",
         "type": "dropShadow",
         "x": 0,
         "y": 0,
@@ -63,9 +63,9 @@
   },
   "fontFamilies": {
     "display": {
-      "value": "Playfair Display",
+      "value": "Inter",
       "type": "fontFamilies",
-      "description": "For emotional headings"
+      "description": "For headings"
     },
     "body": {
       "value": "Inter",
@@ -248,7 +248,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Display XL - 48sp Bold Playfair"
+    "description": "Display XL - 48sp Bold Inter"
   },
   "display": {
     "value": {
@@ -263,7 +263,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Display - 36sp Semibold Playfair"
+    "description": "Display - 36sp Semibold Inter"
   },
   "headline": {
     "value": {
@@ -278,7 +278,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Headline - 28sp Semibold Playfair"
+    "description": "Headline - 28sp Semibold Inter"
   },
   "title": {
     "value": {

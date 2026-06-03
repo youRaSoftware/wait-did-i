@@ -1,5 +1,6 @@
 class RouterConstants {
   // Routes
+  static const String showcaseRoute = '/showcase';
   static const String exampleRoute = '/example';
 
   // TODO: Add more route constants here

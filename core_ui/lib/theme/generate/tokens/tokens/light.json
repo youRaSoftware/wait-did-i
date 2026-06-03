@@ -2,14 +2,14 @@
   "color": {
     "background": {
       "primary": {
-        "value": "#FFFBF8",
+        "value": "#F4F7F9",
         "type": "color",
         "description": "Main app background"
       },
       "secondary": {
-        "value": "#FFF5F0",
+        "value": "#ECF1F5",
         "type": "color",
-        "description": "Secondary background with gradient"
+        "description": "Secondary background"
       },
       "surface": {
         "value": "#FFFFFF",
@@ -19,22 +19,22 @@
       "elevated": {
         "value": "#FFFFFF",
         "type": "color",
-        "description": "Elevated surfaces with shadow"
+        "description": "Elevated surfaces"
       }
     },
     "text": {
       "primary": {
-        "value": "#1A0F0F",
+        "value": "#2D3748",
         "type": "color",
         "description": "Main text color"
       },
       "secondary": {
-        "value": "#5C4A4A",
+        "value": "#718096",
         "type": "color",
         "description": "Secondary text"
       },
       "tertiary": {
-        "value": "#8B7575",
+        "value": "#A0AEC0",
         "type": "color",
         "description": "Tertiary text (captions, hints)"
       },
@@ -44,36 +44,36 @@
         "description": "Text on dark backgrounds"
       },
       "disabled": {
-        "value": "#CCCCCC",
+        "value": "#CBD5E0",
         "type": "color"
       }
     },
     "brand": {
       "coral": {
-        "value": "#FF9A8B",
+        "value": "#5A9BD4",
         "type": "color",
-        "description": "Primary brand color"
+        "description": "Primary accent color"
       },
       "peach": {
-        "value": "#FFD7A8",
+        "value": "#7BB0DD",
         "type": "color"
       },
       "lavender": {
-        "value": "#E8B4D1",
+        "value": "#6E8CAD",
         "type": "color"
       },
       "mint": {
-        "value": "#B8E6D4",
+        "value": "#68C58F",
         "type": "color"
       },
       "ocean": {
-        "value": "#87CEEB",
+        "value": "#4F86C6",
         "type": "color"
       }
     },
     "border": {
       "default": {
-        "value": "#E0E0E0",
+        "value": "#E2E8F0",
         "type": "color"
       },
       "glass": {
@@ -82,7 +82,7 @@
         "description": "Border for glass surfaces"
       },
       "focus": {
-        "value": "#FF9A8B",
+        "value": "#5A9BD4",
         "type": "color"
       }
     },
@@ -99,19 +99,19 @@
     },
     "state": {
       "error": {
-        "value": "#FF6B6B",
+        "value": "#E07A7A",
         "type": "color"
       },
       "success": {
-        "value": "#20D371",
+        "value": "#68C58F",
         "type": "color"
       },
       "warning": {
-        "value": "#FFB626",
+        "value": "#E8B860",
         "type": "color"
       },
       "info": {
-        "value": "#107BEC",
+        "value": "#5A9BD4",
         "type": "color"
       }
     }
@@ -220,7 +220,7 @@
   },
   "font-family": {
     "display": {
-      "value": "Playfair Display",
+      "value": "Inter",
       "type": "string"
     },
     "body": {

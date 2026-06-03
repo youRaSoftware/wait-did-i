@@ -16,6 +16,7 @@ dependencies:
     path: ../domain
   navigation:
     path: ../navigation
+  pinput: ^5.0.1
 
 dev_dependencies:
   flutter_lints: ^6.0.0

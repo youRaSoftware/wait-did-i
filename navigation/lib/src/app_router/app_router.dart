@@ -18,8 +18,13 @@ class AppRouter {
   final GoRouter _router = GoRouter(
     navigatorKey: _navigatorKey,
     observers: <NavigatorObserver>[ScreenLogsRouteObserver()],
-    initialLocation: RouterConstants.exampleRoute,
+    initialLocation: RouterConstants.showcaseRoute,
     routes: <RouteBase>[
+      GoRoute(
+        path: RouterConstants.showcaseRoute,
+        name: RouterConstants.showcaseRoute,
+        builder: (BuildContext context, GoRouterState state) => const ShowcaseScreen(),
+      ),
       GoRoute(
         path: RouterConstants.exampleRoute,
         name: RouterConstants.exampleRoute,

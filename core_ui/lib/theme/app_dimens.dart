@@ -87,4 +87,72 @@ class AppDimens {
   static const double size480 = 480.0;
   static const double size550 = 550.0;
   static const double size800 = 800.0;
+
+  /// Border radius
+  static const double borderRadius0 = 0.0;
+  static const double borderRadius4 = 4.0;
+  static const double borderRadius6 = 6.0;
+  static const double borderRadius8 = 8.0;
+  static const double borderRadius10 = 10.0;
+  static const double borderRadius12 = 12.0;
+  static const double borderRadius14 = 14.0;
+  static const double borderRadius16 = 16.0;
+  static const double borderRadius18 = 18.0;
+  static const double borderRadius20 = 20.0;
+  static const double borderRadius24 = 24.0;
+  static const double borderRadius28 = 28.0;
+  static const double borderRadius40 = 40.0;
+  static const double borderRadius48 = 48.0;
+  static const double borderRadius100 = 100.0;
+
+  /// Padding
+  static const double padding0 = 0.0;
+  static const double padding2 = 2.0;
+  static const double padding4 = 4.0;
+  static const double padding6 = 6.0;
+  static const double padding8 = 8.0;
+  static const double padding10 = 10.0;
+  static const double padding12 = 12.0;
+  static const double padding14 = 14.0;
+  static const double padding16 = 16.0;
+  static const double padding18 = 18.0;
+  static const double padding20 = 20.0;
+  static const double padding22 = 22.0;
+  static const double padding24 = 24.0;
+  static const double padding28 = 28.0;
+  static const double padding32 = 32.0;
+  static const double padding36 = 36.0;
+  static const double padding40 = 40.0;
+  static const double padding48 = 48.0;
+
+  /// Margin
+  static const double margin4 = 4.0;
+  static const double margin6 = 6.0;
+  static const double margin8 = 8.0;
+  static const double margin12 = 12.0;
+  static const double margin16 = 16.0;
+  static const double margin24 = 24.0;
+
+  /// Opacity
+  static const double opacity04 = 0.04;
+  static const double opacity08 = 0.08;
+  static const double opacity1 = 0.1;
+  static const double opacity12 = 0.12;
+  static const double opacity15 = 0.15;
+  static const double opacity2 = 0.2;
+  static const double opacity3 = 0.3;
+  static const double opacity4 = 0.4;
+  static const double opacity5 = 0.5;
+  static const double opacity6 = 0.6;
+  static const double opacity7 = 0.7;
+  static const double opacity8 = 0.8;
+
+  /// Thickness / stroke
+  static const double thickness0_5 = 0.5;
+  static const double thickness1 = 1.0;
+  static const double thickness2 = 2.0;
+
+  /// Max lines
+  static const int maxLines2 = 2;
+  static const int maxLines3 = 3;
 }

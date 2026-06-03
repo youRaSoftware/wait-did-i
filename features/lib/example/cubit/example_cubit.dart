@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
-import 'package:navigation/navigation.dart';
 
 part 'example_state.dart';
 

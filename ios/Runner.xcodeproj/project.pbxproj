@@ -472,7 +472,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
-				APP_NAME = "Template Dev";
+				APP_NAME = "Wait, Did I? DEV";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_SUFFIX = .dev;
 				CLANG_ENABLE_MODULES = YES;
@@ -507,7 +507,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.template.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pyf.waitdidi.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -577,7 +577,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
-				APP_NAME = "Template Stage";
+				APP_NAME = "Wait, Did I? STAGE";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_SUFFIX = .stage;
 				CLANG_ENABLE_MODULES = YES;
@@ -612,7 +612,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.template.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pyf.waitdidi.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -682,7 +682,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
-				APP_NAME = Template;
+				APP_NAME = "Wait, Did I?";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_SUFFIX = "";
 				CLANG_ENABLE_MODULES = YES;
@@ -717,7 +717,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.template.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pyf.waitdidi.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -784,7 +784,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
-				APP_NAME = "Template Dev";
+				APP_NAME = "Wait, Did I? DEV";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_SUFFIX = .dev;
 				CLANG_ENABLE_MODULES = YES;
@@ -818,7 +818,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.template.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pyf.waitdidi.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -883,7 +883,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
-				APP_NAME = "Template Stage";
+				APP_NAME = "Wait, Did I? STAGE";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_SUFFIX = .stage;
 				CLANG_ENABLE_MODULES = YES;
@@ -917,7 +917,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.template.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pyf.waitdidi.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -982,7 +982,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
-				APP_NAME = Template;
+				APP_NAME = "Wait, Did I?";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_SUFFIX = "";
 				CLANG_ENABLE_MODULES = YES;
@@ -1016,7 +1016,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.template.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pyf.waitdidi.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";

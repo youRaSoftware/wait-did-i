@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.template"
+    namespace = "com.pyf.waitdidi"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,8 +20,7 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.template"
+        applicationId = "com.pyf.waitdidi"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -36,17 +35,17 @@ android {
             dimension = "environment"
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
-            resValue("string", "app_name", "Template Dev")
+            resValue("string", "app_name", "Wait, Did I? DEV")
         }
         create("stage") {
             dimension = "environment"
             applicationIdSuffix = ".stage"
             versionNameSuffix = "-stage"
-            resValue("string", "app_name", "Template Stage")
+            resValue("string", "app_name", "Wait, Did I? STAGE")
         }
         create("prod") {
             dimension = "environment"
-            resValue("string", "app_name", "Template")
+            resValue("string", "app_name", "Wait, Did I?")
         }
     }
 
