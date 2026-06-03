@@ -37,3 +37,5 @@ flutter:
   assets:
     - resources/
     - resources/translations/
+    - resources/icons/outline/
+    - resources/icons/filled/
