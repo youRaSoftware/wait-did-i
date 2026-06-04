@@ -18,8 +18,37 @@ class AppRouter {
   final GoRouter _router = GoRouter(
     navigatorKey: _navigatorKey,
     observers: <NavigatorObserver>[ScreenLogsRouteObserver()],
-    initialLocation: RouterConstants.showcaseRoute,
+    initialLocation: RouterConstants.homeRoute,
+    // First-launch gate: until onboarding is completed, force users onto it.
+    redirect: (BuildContext context, GoRouterState state) {
+      final bool completed = appLocator<OnboardingService>().isCompleted;
+      final bool goingToOnboarding = state.matchedLocation == RouterConstants.onboardingRoute;
+
+      if (!completed && !goingToOnboarding) {
+        return RouterConstants.onboardingRoute;
+      }
+      if (completed && goingToOnboarding) {
+        return RouterConstants.homeRoute;
+      }
+      return null;
+    },
     routes: <RouteBase>[
+      GoRoute(
+        path: RouterConstants.onboardingRoute,
+        name: RouterConstants.onboardingRoute,
+        builder: (BuildContext context, GoRouterState state) => const OnboardingScreen(),
+      ),
+      GoRoute(
+        path: RouterConstants.homeRoute,
+        name: RouterConstants.homeRoute,
+        builder: (BuildContext context, GoRouterState state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: RouterConstants.settingsRoute,
+        name: RouterConstants.settingsRoute,
+        builder: (BuildContext context, GoRouterState state) => const SettingsScreen(),
+      ),
+      // Dev-only screens
       GoRoute(
         path: RouterConstants.showcaseRoute,
         name: RouterConstants.showcaseRoute,
@@ -30,7 +59,6 @@ class AppRouter {
         name: RouterConstants.exampleRoute,
         builder: (BuildContext context, GoRouterState state) => const ExampleScreen(),
       ),
-      // TODO: Add more routes here
     ],
     errorBuilder: (BuildContext context, GoRouterState state) {
       return Scaffold(

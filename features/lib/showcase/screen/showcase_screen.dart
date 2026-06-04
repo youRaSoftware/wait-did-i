@@ -43,7 +43,10 @@ class _ShowcaseScreenState extends State<ShowcaseScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text('Bottom sheet', style: sheetContext.currentTokens.textStyle.title.copyWith(color: color.colorTextPrimary)),
+                Text(
+                  'Bottom sheet',
+                  style: sheetContext.currentTokens.textStyle.title.copyWith(color: color.colorTextPrimary),
+                ),
                 const SizedBox(height: AppDimens.size8),
                 Text(
                   'Готово, дверь отмечена. Одного снимка достаточно.',
@@ -441,7 +444,12 @@ class _ShowcaseScreenState extends State<ShowcaseScreen> {
                 trailing: BaseContextMenu(
                   items: <ContextMenuModel>[
                     ContextMenuModel(title: 'Переименовать', icon: Icons.edit_outlined, onTap: () {}),
-                    ContextMenuModel(title: 'Дублировать', icon: Icons.copy_outlined, onTap: () {}, showDividerAfter: true),
+                    ContextMenuModel(
+                      title: 'Дублировать',
+                      icon: Icons.copy_outlined,
+                      onTap: () {},
+                      showDividerAfter: true,
+                    ),
                     ContextMenuModel(title: 'Удалить', icon: Icons.delete_outline, isDestructive: true, onTap: () {}),
                   ],
                 ),
@@ -451,15 +459,27 @@ class _ShowcaseScreenState extends State<ShowcaseScreen> {
               title: 'Shimmer',
               child: Row(
                 children: <Widget>[
-                  ShimmerBox(width: AppDimens.size48, height: AppDimens.size48, borderRadius: BorderRadius.circular(AppDimens.borderRadius12)),
+                  ShimmerBox(
+                    width: AppDimens.size48,
+                    height: AppDimens.size48,
+                    borderRadius: BorderRadius.circular(AppDimens.borderRadius12),
+                  ),
                   const SizedBox(width: AppDimens.size12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        ShimmerBox(width: AppDimens.size160, height: AppDimens.size14, borderRadius: BorderRadius.circular(AppDimens.borderRadius6)),
+                        ShimmerBox(
+                          width: AppDimens.size160,
+                          height: AppDimens.size14,
+                          borderRadius: BorderRadius.circular(AppDimens.borderRadius6),
+                        ),
                         const SizedBox(height: AppDimens.size8),
-                        ShimmerBox(width: AppDimens.size100, height: AppDimens.size14, borderRadius: BorderRadius.circular(AppDimens.borderRadius6)),
+                        ShimmerBox(
+                          width: AppDimens.size100,
+                          height: AppDimens.size14,
+                          borderRadius: BorderRadius.circular(AppDimens.borderRadius6),
+                        ),
                       ],
                     ),
                   ),
