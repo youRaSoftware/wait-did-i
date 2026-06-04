@@ -32,6 +32,29 @@ dev_dependencies:
   json_serializable: ^6.11.1
   flutter_gen: ^5.11.0
 
+# Assets live in this package, so they are bundled under `packages/core/...`.
+# package_parameter_enabled keeps the generated paths package-aware so they
+# resolve when referenced from other modules (core_ui, features).
+flutter_gen:
+  output: ../core_ui/lib/assets_gen/
+  line_length: 80
+
+  integrations:
+    image: false
+    flutter_svg: false
+    rive: true
+    lottie: true
+
+  assets:
+    enabled: true
+    outputs:
+      package_parameter_enabled: true
+      style: camel-case
+      class_name: AppAssets
+
+  fonts:
+    enabled: false
+
 flutter:
   uses-material-design: true
   assets:

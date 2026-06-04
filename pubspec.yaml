@@ -50,11 +50,13 @@ flutter:
         - asset: core/resources/fonts/PlayfairDisplay-Bold.ttf
           weight: 700
 
-    - family: Inter
+    - family: Manrope
       fonts:
-        - asset: core/resources/fonts/Inter-Regular.ttf
+        - asset: core/resources/fonts/Manrope-Regular.ttf
           weight: 400
-        - asset: core/resources/fonts/Inter-Medium.ttf
+        - asset: core/resources/fonts/Manrope-Medium.ttf
           weight: 500
-        - asset: core/resources/fonts/Inter-SemiBold.ttf
+        - asset: core/resources/fonts/Manrope-SemiBold.ttf
           weight: 600
+        - asset: core/resources/fonts/Manrope-Bold.ttf
+          weight: 700

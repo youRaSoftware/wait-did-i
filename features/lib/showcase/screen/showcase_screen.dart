@@ -197,6 +197,102 @@ class _ShowcaseScreenState extends State<ShowcaseScreen> {
               ),
             ),
             _Section(
+              title: 'Phosphor icons',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  // Raw icons: outline (left group) vs filled (right group).
+                  Wrap(
+                    spacing: AppDimens.size16,
+                    runSpacing: AppDimens.size16,
+                    children: <Widget>[
+                      _Icon(AppAssets.resourcesIconsOutlineBell, color: color.colorTextPrimary),
+                      _Icon(AppAssets.resourcesIconsOutlineHouse, color: color.colorTextPrimary),
+                      _Icon(AppAssets.resourcesIconsOutlineGear, color: color.colorTextPrimary),
+                      _Icon(AppAssets.resourcesIconsOutlineHeart, color: color.colorBrandCoral),
+                      _Icon(AppAssets.resourcesIconsFilledBellFill, color: color.colorTextPrimary),
+                      _Icon(AppAssets.resourcesIconsFilledHouseFill, color: color.colorTextPrimary),
+                      _Icon(AppAssets.resourcesIconsFilledGearFill, color: color.colorTextPrimary),
+                      _Icon(AppAssets.resourcesIconsFilledHeartFill, color: color.colorBrandCoral),
+                    ],
+                  ),
+                  const SizedBox(height: AppDimens.size16),
+                  // Inside buttons: AppImage ignores IconTheme, so the content
+                  // color is passed explicitly to match each button style.
+                  AppButton(
+                    text: 'Добавить напоминание',
+                    icon: AppImage(
+                      image: AppAssets.resourcesIconsOutlinePlus,
+                      width: AppDimens.size24,
+                      height: AppDimens.size24,
+                      color: color.colorTextInverse,
+                    ),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(height: AppDimens.size12),
+                  AppButton(
+                    text: 'Отметить выполненным',
+                    style: AppButtonStyle.secondary,
+                    icon: AppImage(
+                      image: AppAssets.resourcesIconsOutlineCheckCircle,
+                      width: AppDimens.size24,
+                      height: AppDimens.size24,
+                      color: color.colorTextPrimary,
+                    ),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(height: AppDimens.size12),
+                  AppButton(
+                    text: 'Удалить',
+                    style: AppButtonStyle.error,
+                    icon: AppImage(
+                      image: AppAssets.resourcesIconsFilledTrashFill,
+                      width: AppDimens.size24,
+                      height: AppDimens.size24,
+                      color: color.colorTextInverse,
+                    ),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(height: AppDimens.size16),
+                  Row(
+                    children: <Widget>[
+                      AppCircleButton(
+                        style: AppCircleButtonStyle.primary,
+                        icon: AppImage(
+                          image: AppAssets.resourcesIconsOutlinePlus,
+                          width: AppDimens.size24,
+                          height: AppDimens.size24,
+                          color: color.colorTextInverse,
+                        ),
+                        onPressed: () {},
+                      ),
+                      const SizedBox(width: AppDimens.size12),
+                      AppCircleButton(
+                        icon: AppImage(
+                          image: AppAssets.resourcesIconsOutlineBell,
+                          width: AppDimens.size24,
+                          height: AppDimens.size24,
+                          color: color.colorTextPrimary,
+                        ),
+                        onPressed: () {},
+                      ),
+                      const SizedBox(width: AppDimens.size12),
+                      AppCircleButton(
+                        style: AppCircleButtonStyle.stroke,
+                        icon: AppImage(
+                          image: AppAssets.resourcesIconsOutlineGear,
+                          width: AppDimens.size24,
+                          height: AppDimens.size24,
+                          color: color.colorTextPrimary,
+                        ),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            _Section(
               title: 'Inputs',
               child: Column(
                 children: <Widget>[
@@ -404,6 +500,23 @@ class _Section extends StatelessWidget {
           child,
         ],
       ),
+    );
+  }
+}
+
+class _Icon extends StatelessWidget {
+  final String asset;
+  final Color color;
+
+  const _Icon(this.asset, {required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppImage(
+      image: asset,
+      width: AppDimens.size28,
+      height: AppDimens.size28,
+      color: color,
     );
   }
 }

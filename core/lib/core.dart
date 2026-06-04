@@ -11,6 +11,7 @@ export 'config/network/dio_config.dart';
 export 'constants/app_constants.dart';
 export 'di/app_di.dart';
 export 'enums/enums.dart';
+export 'extensions/string_image_extensions.dart';
 export 'localization/app_localization_enum.dart';
 export 'logger/app_logger.dart';
 export 'service/services.dart';

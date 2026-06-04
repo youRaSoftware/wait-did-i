@@ -220,11 +220,11 @@
   },
   "font-family": {
     "display": {
-      "value": "Inter",
+      "value": "Manrope",
       "type": "string"
     },
     "body": {
-      "value": "Inter",
+      "value": "Manrope",
       "type": "string"
     }
   },

@@ -1,3 +1,4 @@
+export 'assets_gen/assets.gen.dart';
 export 'theme/app_dimens.dart';
 export 'theme/app_theme.dart';
 export 'theme/generate/tokens.g.dart';

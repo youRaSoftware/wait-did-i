@@ -63,12 +63,12 @@
   },
   "fontFamilies": {
     "display": {
-      "value": "Inter",
+      "value": "Manrope",
       "type": "fontFamilies",
       "description": "For headings"
     },
     "body": {
-      "value": "Inter",
+      "value": "Manrope",
       "type": "fontFamilies",
       "description": "For body text and UI"
     }
@@ -248,7 +248,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Display XL - 48sp Bold Inter"
+    "description": "Display XL - 48sp Bold Manrope"
   },
   "display": {
     "value": {
@@ -263,7 +263,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Display - 36sp Semibold Inter"
+    "description": "Display - 36sp Semibold Manrope"
   },
   "headline": {
     "value": {
@@ -278,7 +278,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Headline - 28sp Semibold Inter"
+    "description": "Headline - 28sp Semibold Manrope"
   },
   "title": {
     "value": {
@@ -293,7 +293,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Title - 24sp Medium Inter"
+    "description": "Title - 24sp Medium Manrope"
   },
   "subtitle": {
     "value": {
@@ -308,7 +308,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Subtitle - 20sp Medium Inter"
+    "description": "Subtitle - 20sp Medium Manrope"
   },
   "body-large": {
     "value": {
@@ -323,7 +323,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Body Large - 18sp Regular Inter"
+    "description": "Body Large - 18sp Regular Manrope"
   },
   "body": {
     "value": {
@@ -338,7 +338,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Body - 16sp Regular Inter"
+    "description": "Body - 16sp Regular Manrope"
   },
   "body-small": {
     "value": {
@@ -353,7 +353,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Body Small - 14sp Regular Inter"
+    "description": "Body Small - 14sp Regular Manrope"
   },
   "caption": {
     "value": {
@@ -368,7 +368,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Caption - 12sp Medium Inter"
+    "description": "Caption - 12sp Medium Manrope"
   },
   "overline": {
     "value": {
@@ -383,7 +383,7 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Overline - 11sp Semibold Inter"
+    "description": "Overline - 11sp Semibold Manrope"
   },
   "button": {
     "value": {
@@ -398,6 +398,6 @@
       "textDecoration": "{textDecoration.none}"
     },
     "type": "typography",
-    "description": "Button - 16sp Semibold Inter"
+    "description": "Button - 16sp Semibold Manrope"
   }
 }

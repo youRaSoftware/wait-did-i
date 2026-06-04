@@ -1,4 +1,5 @@
-// Buttons
+// Image
+export 'app_image.dart';
 // Loaders
 export 'app_loader.dart';
 export 'bouncing_dots_loader.dart';
