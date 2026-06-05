@@ -14,7 +14,8 @@
 спокойно идти дальше.
 
 - **Платформа:** Flutter (Android + iOS).
-- **Display name:** `Wait, Did I?` (DEV/STAGE-сборки — с суффиксом окружения).
+- **Display name (на иконке, `CFBundleDisplayName`):** `Wait, Did I?` (DEV/STAGE-сборки — с суффиксом окружения).
+- **App Store listing name:** `Wait, Did I Lock It?` — имя `Wait, Did I?` в сторе было занято, поэтому в листинге уникальное название; на иконке остаётся короткое `Wait, Did I?`.
 - **Bundle id / package:** `com.pyf.waitdidi` (prod), `com.pyf.waitdidi.stage`, `com.pyf.waitdidi.dev`.
 - **App Store subtitle:** `Home Checklist`.
 

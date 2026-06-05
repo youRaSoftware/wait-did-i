@@ -5,6 +5,34 @@
 
 ---
 
+## 2026-06-05 — Удаление Figma-токенов из скриптов и истории git
+
+**Задача:** GitHub Push Protection блокировал пуш `develop`: в коммите "Add scripts"
+были захардкожены два Figma Personal Access Token. Убрать секреты и запушить.
+
+### Что сделано
+
+- ✅ `script/export_figma_flags.sh` — токен заменён на обязательную переменную окружения
+  `FIGMA_TOKEN` (`${FIGMA_TOKEN:?...}` с подсказкой по запуску).
+- ✅ `script/export_figma_icons.sh` — то же самое.
+- ✅ История переписана (`git commit --fixup` + `rebase --autosquash`): фикс вшит в исходный
+  коммит "Add scripts", секреты удалены из истории, а не только из рабочей копии.
+- ✅ Пуш `develop` прошёл успешно (`f24b122..7dea4e9`).
+
+### Проверка
+
+- `bash -n` обоих скриптов — синтаксис OK.
+- `git log -p origin/develop..develop | grep figd_` перед пушем — реальных токенов нет,
+  только плейсхолдер `figd_xxx` в тексте подсказки.
+
+### Важно (действие пользователя)
+
+- ❗ Старые токены (`figd_JXXq...`, `figd_v8mb...`) нужно отозвать в Figma:
+  Settings → Security → Personal access tokens. Запуск скриптов теперь:
+  `FIGMA_TOKEN=figd_xxx ./script/export_figma_icons.sh`
+
+---
+
 ## 2026-05-26 — Экран-витрина core_ui + переключение темы (стартовый экран)
 
 **Задача:** Сделать первый экран витриной всех виджетов core_ui с переключателем
