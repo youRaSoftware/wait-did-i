@@ -5,6 +5,104 @@
 
 ---
 
+## 2026-06-22 — Разбор корня: специи фич в `.claude/specs/`, бриф влит в PLAN.md
+
+**Задача:** Перестать кидать спеки/эталоны и версионные `CLAUDE_N.md` в корень.
+Навести порядок и зафиксировать конвенцию именования.
+
+### Что сделано
+
+- ✅ `.claude/specs/<feature>/` — новая папка под дизайн-спеки фич. Перемещены:
+  - `ONBOARDING_SPEC.md` → `.claude/specs/onboarding/spec.md`
+  - `onboarding_final.html` → `.claude/specs/onboarding/reference.html`
+  - `HOME_SCREEN_SPEC.md` → `.claude/specs/home/spec.md`
+  - `home_screen_final.html` → `.claude/specs/home/reference.html`
+- ✅ `.claude/specs/README.md` — конвенция: фича → `spec.md` + `reference.html`,
+  эталон главнее кода, продуктовый контекст живёт в `PLAN.md` (без `CLAUDE_N`).
+- ✅ `CLAUDE_2.md` / `CLAUDE_3.md` удалены; `CLAUDE_3` (новее, = бриф + главный экран)
+  влит в `PLAN.md`: UX-фразы (greetings/прогресс/дефолтные пункты), dark-токены,
+  шрифт Manrope, кривые анимаций (`easeOutBack`/`easeOutCubic`), haptic на чекбоксах,
+  иконка-ключ, маскот «Дотти», главный экран + авто-создание дефолтного списка
+  `Leaving home`. Заодно поправлено: шрифт (был «Inter»), FVM (не используется).
+- ✅ Ссылки обновлены: внутри спек (`onboarding_final.html`/`home_screen_final.html`
+  → `reference.html`), в doc-комментах онбординга (→ `.claude/specs/onboarding/reference.html`),
+  в `PLAN.md` (→ `.claude/specs/...`), в `.claude/my_docs/ROADMAP.md`.
+
+### Конвенция (на будущее)
+
+- Дизайн фичи → `.claude/specs/<feature>/spec.md` + `reference.html`. В корень — не кидать.
+- Продуктовый контекст → `PLAN.md` (один источник, без версионных `CLAUDE_N.md`).
+- Корень держим чистым: `CLAUDE.md`, `PLAN.md`, `CLAUDE_CHANGES.md`, `README.md`.
+
+---
+
+## 2026-06-22 — Тёмная тема по умолчанию
+
+**Задача:** Сделать тёмную тему дефолтной при запуске (онбординг тёмный → home тоже тёмный,
+без скачка). Светлая тема — опцией в настройках позже. Снять противоречие старого PLAN
+(«только светлая») и `CLAUDE_2.md` («тёмная — основная»).
+
+### Что сделано
+
+- ✅ `lib/app.dart` — `initialTokens: LightTokens()` → `DarkTokens()`. Home/Settings token-driven,
+  поэтому переключаются на тёмные значения автоматически.
+- ✅ `PLAN.md` и `.claude/my_docs/ROADMAP.md` — формулировки темы приведены к «тёмная по умолчанию,
+  светлая — опцией в настройках (позже)».
+- 🚧 Тоггл светлой темы в настройках — отдельной задачей (пламбинг уже есть:
+  `context.toggleTheme()` / `context.switchTheme(bool)`; нужна UI-строка в настройках + персист флага).
+
+---
+
+## 2026-06-22 — Новый анимированный онбординг (3 слайда)
+
+**Задача:** Реализовать новый онбординг по эталону `onboarding_final.html` (+ `ONBOARDING_SPEC.md`,
+`CLAUDE_2.md`): 3 тёмных слайда с анимациями — падающие карточки, поляроид с проявкой и штампом,
+ночная сцена дома. Заменить старый плейсхолдер-онбординг, сохранив нашу архитектуру.
+
+### Решения
+
+- ✅ Визуал/тайминги — точно по HTML-эталону; **архитектура — наша** (cubit/screen/form, go_router,
+  `OnboardingService`-гейт уже были — переиспользованы без изменений).
+- ✅ Палитра онбординга — локальная (`onboarding_colors.dart`), dark-only, пиксель-в-пиксель к эталону
+  (осознанное исключение из правила «только токены»: бэстрые значения поляроида/сцены не являются
+  токенами, а онбординг тёмный независимо от темы приложения).
+- ✅ Иллюстрации — `CustomPaint` (дверь, ночная сцена, пунктирный кружок, галочка) — больше контроля
+  над покадровой анимацией, без новых зависимостей.
+- ✅ RU — авторский перевод-черновик в тоне бренда (помечен как draft, нужна вычитка переводчиком).
+- ✅ Manrope 700 уже был забандлен — доп. правок шрифта не потребовалось.
+
+### Изменённые / добавленные файлы
+
+- `features/lib/onboarding/screen/onboarding_form.dart` — переписан: `Scaffold` + `Stack`
+  (glow → `PageView` из 3 слайдов → прогресс+Skip сверху → точки+CTA снизу). Skip → последний слайд;
+  CTA на последнем → `cubit.finish()`.
+- `features/lib/onboarding/widgets/`: `onboarding_colors.dart` (палитра + текстстили), `onboarding_motion.dart`
+  (кривые `easeOutBack`/`easeOutCubic` + интервалы таймингов), `onboarding_background_glow.dart`,
+  `onboarding_progress_bar.dart`, `onboarding_page_dots.dart` (заменил `onboarding_dots.dart`),
+  `onboarding_cta_button.dart` (+ `HapticService`).
+- `features/lib/onboarding/widgets/painters/`: `check_mark_painter.dart` (галочка + пунктирный кружок),
+  `polaroid_door_painter.dart`, `night_house_painter.dart` (параметризован `windowOpacity` + opacity звёзд).
+- `features/lib/onboarding/slides/`: `onboarding_slide_frame.dart` (общий каркас + перезапуск анимации
+  по `isActive` + появление заголовка/подзаголовка), `slide_falling_cards.dart`, `slide_polaroid.dart`,
+  `slide_night_house.dart`.
+- Удалены `widgets/onboarding_dots.dart`, `widgets/onboarding_step_view.dart` (старый плейсхолдер).
+- `core/resources/translations/en-US.json` + `ru-RU.json` — блок `onboarding.*` заменён на новые ключи
+  (`slide1..3Title/Subtitle`, `continueLabel`, `getStarted`, `skip`, `slide2PolaroidCaption`); перегенерирован
+  `core/lib/localization/locale_keys.g.dart`.
+- `cubit/onboarding_cubit.dart` / `onboarding_state.dart` — без изменений (хватило `currentIndex`/`isLast`/
+  `onPageChanged`/`finish`).
+
+### Проверка
+
+- `flutter analyze features core` — **0 issues**. `dart format` — ок.
+- Анимации перезапускаются при возврате к слайду (`isActive` → `forward(from: 0)`); Skip ведёт на финал,
+  не закрывает; флаг `OnboardingService` после «Начать» → следующий запуск сразу на `/home`.
+- 🚧 Визуальная сверка с `onboarding_final.html` на устройстве/симуляторе — за пользователем
+  (тайминги, углы карточек, тёплое окно, glow).
+- ⚠️ RU-тексты — черновик, нужна финальная вычитка переводчиком.
+
+---
+
 ## 2026-06-05 — Удаление Figma-токенов из скриптов и истории git
 
 **Задача:** GitHub Push Protection блокировал пуш `develop`: в коммите "Add scripts"

@@ -39,6 +39,8 @@ build/
 .classpath
 .project
 .settings/
+.cursor/
+.cursorrules
 
 # ============================================
 # Platform Specific
@@ -57,6 +59,7 @@ build/
 *.keystore
 
 # iOS / macOS
+**/ios/Runner/GoogleService-Info.plist
 **/ios/**/*.mode1v3
 **/ios/**/*.mode2v3
 **/ios/**/*.moved-aside
@@ -90,6 +93,13 @@ build/
 **/macos/Flutter/GeneratedPluginRegistrant.swift
 **/macos/Flutter/ephemeral
 **/xcuserdata/
+
+# ============================================
+# Secrets (service accounts, local creds)
+# ============================================
+functions/.secrets/
+**/serviceAccount*.json
+**/*-firebase-adminsdk-*.json
 
 # ============================================
 # Testing & Coverage
@@ -146,13 +156,6 @@ app.*.map.json
 # FVM (Flutter Version Management)
 .fvm/
 
-# AI Logs (if used)
-.ai_log
-.cursorrules
-CLAUDE.md
-.claudeignore
-.cursor/
-.claude/
 
 # Run configurations
 .run/

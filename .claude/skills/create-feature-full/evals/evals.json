@@ -1,0 +1,25 @@
+{
+  "skill_name": "create-feature-full",
+  "evals": [
+    {"id": 1, "query": "создай полностью фичу комментариев к матчу — данные: Firestore коллекция matchComments (userId, matchId, text, createdAt), плюс экран со списком комментариев и формой отправки", "should_trigger": true},
+    {"id": 2, "query": "need to build the head-to-head feature end to end: data comes from the matches collection in Firestore plus the getTeamMatches Cloud Function — and a screen comparing two teams' recent results", "should_trigger": true},
+    {"id": 3, "query": "сделай фичу избранных матчей от и до — бэк готов: Firestore коллекция favoriteMatches (userId, matchId, addedAt) + экран со списком избранного", "should_trigger": true},
+    {"id": 4, "query": "implement the full notifications feature with data layer and UI: Firestore collection userNotifications, mark-as-read writes back to the doc, screen with notification list", "should_trigger": true},
+    {"id": 5, "query": "нужна фича \"Бонусные вопросы\" целиком — и репозиторий и сервис и экраны. Данные: коллекция bonusQuestions в Firestore, ответы пользователя в bonusAnswers", "should_trigger": true},
+    {"id": 6, "query": "create feature for friend requests — Firestore collection friendRequests, Cloud Function acceptFriendRequest, and a requests list screen with accept/decline buttons", "should_trigger": true},
+    {"id": 7, "query": "сделай фичу жалоб на пользователей: Cloud Function reportUser с полями reason и targetUserId + экран с формой отправки жалобы", "should_trigger": true},
+    {"id": 8, "query": "build the team news feed completely — data lands in the Firestore teamNews collection via the Cloud Functions sync, screen with the feed and competition filters", "should_trigger": true},
+    {"id": 9, "query": "нужно сделать UI для экрана наград, бэк пока не готов, замокай данные", "should_trigger": false},
+    {"id": 10, "query": "create mock screens for the season recap flow, no data layer needed", "should_trigger": false},
+    {"id": 11, "query": "подключи данные для бонусных вопросов — коллекция bonusQuestions в Firestore — экраны уже готовы", "should_trigger": false},
+    {"id": 12, "query": "create a data layer for the match comments feature: DTO, mapper, repository. Firestore collection matchComments, no UI needed", "should_trigger": false},
+    {"id": 13, "query": "сделай виджет AppRatingStars для отображения рейтинга звёздочками", "should_trigger": false},
+    {"id": 14, "query": "fix the cubit error handling in the leaderboard feature", "should_trigger": false},
+    {"id": 15, "query": "add a season selector to the existing prediction history list", "should_trigger": false},
+    {"id": 16, "query": "create a reusable bottom sheet widget with custom animation", "should_trigger": false},
+    {"id": 17, "query": "напиши тесты для PredictionRepository", "should_trigger": false},
+    {"id": 18, "query": "scaffold UI screens for settings — no backend, use hardcoded values", "should_trigger": false},
+    {"id": 19, "query": "migrate existing achievements feature from mock data to real Firestore", "should_trigger": false},
+    {"id": 20, "query": "add localization keys for the new quick predictions screens", "should_trigger": false}
+  ]
+}

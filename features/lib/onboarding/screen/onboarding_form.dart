@@ -1,30 +1,20 @@
 import 'package:core/core.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../cubit/onboarding_cubit.dart';
-import '../widgets/onboarding_dots.dart';
-import '../widgets/onboarding_step_view.dart';
+import '../slides/slide_falling_cards.dart';
+import '../slides/slide_night_house.dart';
+import '../slides/slide_polaroid.dart';
+import '../widgets/onboarding_background_glow.dart';
+import '../widgets/onboarding_colors.dart';
+import '../widgets/onboarding_cta_button.dart';
+import '../widgets/onboarding_motion.dart';
+import '../widgets/onboarding_page_dots.dart';
+import '../widgets/onboarding_progress_bar.dart';
 
-/// Static per-step content: a placeholder icon + localization keys.
-const List<OnboardingStepData> _steps = <OnboardingStepData>[
-  OnboardingStepData(
-    icon: AppAssets.resourcesIconsOutlineBell,
-    titleKey: LocaleKeys.onboarding_step1Title,
-    subtitleKey: LocaleKeys.onboarding_step1Subtitle,
-  ),
-  OnboardingStepData(
-    icon: AppAssets.resourcesIconsOutlineCheckCircle,
-    titleKey: LocaleKeys.onboarding_step2Title,
-    subtitleKey: LocaleKeys.onboarding_step2Subtitle,
-  ),
-  OnboardingStepData(
-    icon: AppAssets.resourcesIconsOutlineHouse,
-    titleKey: LocaleKeys.onboarding_step3Title,
-    subtitleKey: LocaleKeys.onboarding_step3Subtitle,
-  ),
-];
-
+/// Three animated dark slides; swipe or tap to advance. Visuals/timings mirror
+/// `.claude/specs/onboarding/reference.html`; flow keeps our cubit + go_router + OnboardingService.
 class OnboardingForm extends StatefulWidget {
   const OnboardingForm({super.key});
 
@@ -41,63 +31,97 @@ class _OnboardingFormState extends State<OnboardingForm> {
     super.dispose();
   }
 
-  void _onNext(OnboardingState state) {
+  void _onCta(OnboardingState state) {
     if (state.isLast) {
       context.read<OnboardingCubit>().finish();
       return;
     }
-    _controller.nextPage(
-      duration: const Duration(milliseconds: 250),
-      curve: Curves.easeInOut,
+    _controller.nextPage(duration: OnboardingMotion.pageTransition, curve: OnboardingMotion.fadeCurve);
+  }
+
+  void _skip(OnboardingState state) {
+    _controller.animateToPage(
+      state.totalSteps - 1,
+      duration: OnboardingMotion.pageTransition,
+      curve: OnboardingMotion.fadeCurve,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      showAppBar: false,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(AppDimens.padding24),
-          child: BlocBuilder<OnboardingCubit, OnboardingState>(
-            builder: (BuildContext context, OnboardingState state) {
-              final OnboardingCubit cubit = context.read<OnboardingCubit>();
+    final OnboardingCubit cubit = context.read<OnboardingCubit>();
+    final double topInset = MediaQuery.of(context).padding.top;
 
-              return Column(
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Opacity(
-                      opacity: state.isLast ? 0 : 1,
-                      child: AppButton(
-                        text: LocaleKeys.onboarding_skip.tr(),
-                        style: AppButtonStyle.text,
-                        isExpanded: false,
-                        onPressed: state.isLast ? null : cubit.finish,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        backgroundColor: OnboardingColors.bgPrimary,
+        body: BlocBuilder<OnboardingCubit, OnboardingState>(
+          builder: (BuildContext context, OnboardingState state) {
+            final int current = state.currentIndex;
+            return Stack(
+              children: <Widget>[
+                const OnboardingBackgroundGlow(),
+                PageView(
+                  controller: _controller,
+                  onPageChanged: cubit.onPageChanged,
+                  children: <Widget>[
+                    SlideFallingCards(isActive: current == 0),
+                    SlidePolaroid(isActive: current == 1),
+                    SlideNightHouse(isActive: current == 2),
+                  ],
+                ),
+                // Top: progress + skip.
+                Positioned(
+                  top: topInset + 16,
+                  left: 28,
+                  right: 28,
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: OnboardingProgressBar(progress: (current + 1) / state.totalSteps),
                       ),
-                    ),
+                      const SizedBox(width: 16),
+                      AnimatedOpacity(
+                        opacity: state.isLast ? 0 : 1,
+                        duration: const Duration(milliseconds: 200),
+                        child: IgnorePointer(
+                          ignoring: state.isLast,
+                          child: GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: () => _skip(state),
+                            child: Text(LocaleKeys.onboarding_skip.tr(), style: OnboardingText.skip),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child: PageView.builder(
-                      controller: _controller,
-                      itemCount: _steps.length,
-                      onPageChanged: cubit.onPageChanged,
-                      itemBuilder: (BuildContext context, int i) => OnboardingStepView(step: _steps[i]),
-                    ),
+                ),
+                // Bottom: dots + CTA.
+                Positioned(
+                  bottom: 50,
+                  left: 0,
+                  right: 0,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      OnboardingPageDots(current: current, total: state.totalSteps),
+                      const SizedBox(height: 24),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 28),
+                        child: OnboardingCtaButton(
+                          label: state.isLast
+                              ? LocaleKeys.onboarding_getStarted.tr()
+                              : LocaleKeys.onboarding_continueLabel.tr(),
+                          onTap: () => _onCta(state),
+                        ),
+                      ),
+                    ],
                   ),
-                  OnboardingDots(
-                    count: state.totalSteps,
-                    currentIndex: state.currentIndex,
-                  ),
-                  const SizedBox(height: AppDimens.size24),
-                  AppButton(
-                    text: state.isLast ? LocaleKeys.onboarding_start.tr() : LocaleKeys.onboarding_next.tr(),
-                    onPressed: () => _onNext(state),
-                  ),
-                ],
-              );
-            },
-          ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

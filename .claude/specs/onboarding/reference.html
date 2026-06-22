@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Wait, Did I? — Onboarding Final</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+  html, body {
+    height: 100%;
+    background: #1A202C;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Manrope', -apple-system, sans-serif;
+    overflow: hidden;
+  }
+
+  /* ========== ТЕЛЕФОН-КАРКАС ========== */
+  .phone {
+    width: 390px; height: 844px;
+    background: #0F1419;
+    border-radius: 54px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  }
+  .phone-notch {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 32px; background: #000; border-radius: 20px; z-index: 100;
+  }
+  .status-bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 54px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px 0; color: #fff; font-weight: 600; font-size: 16px;
+    z-index: 50;
+  }
+  .status-right { display: flex; gap: 6px; align-items: center; }
+
+  /* ========== СЛАЙДЕР ========== */
+  .slides-container {
+    position: absolute; top: 0; left: 0;
+    width: 1170px; height: 100%;
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .slide { width: 390px; height: 100%; position: relative; flex-shrink: 0; }
+
+  /* ========== ОБЩИЕ ЭЛЕМЕНТЫ ========== */
+  .bg-glow {
+    position: absolute; bottom: -180px; left: -80px; right: -80px; height: 500px;
+    background: radial-gradient(ellipse at center,
+      rgba(90, 155, 212, 0.35) 0%, rgba(90, 155, 212, 0.10) 35%, transparent 70%);
+    filter: blur(50px); pointer-events: none;
+  }
+  .bg-glow-2 {
+    position: absolute; top: -100px; right: -100px; width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(123, 176, 221, 0.20) 0%, transparent 60%);
+    filter: blur(40px); pointer-events: none;
+  }
+
+  .top-area {
+    position: absolute; top: 70px; left: 28px; right: 28px;
+    display: flex; align-items: center; gap: 16px; z-index: 10;
+  }
+  .progress-track {
+    flex: 1; height: 3px; background: rgba(255,255,255,0.08);
+    border-radius: 2px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7BB0DD 0%, #5A9BD4 100%);
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .skip {
+    color: #718096; font-size: 14px; font-weight: 500;
+    text-decoration: none; cursor: pointer;
+  }
+
+  .text-area {
+    position: absolute; bottom: 180px; left: 28px; right: 28px;
+  }
+  .headline {
+    font-size: 30px; font-weight: 700; color: #F7FAFC;
+    line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 14px;
+  }
+  .subline {
+    font-size: 15px; color: #B4C0CE; line-height: 1.55;
+  }
+
+  .slide .headline, .slide .subline {
+    opacity: 0; transform: translateY(20px);
+  }
+  .slide.active .headline {
+    animation: textIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+  }
+  .slide.active .subline {
+    animation: textIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.4s forwards;
+  }
+  @keyframes textIn { to { opacity: 1; transform: translateY(0); } }
+
+  .cta {
+    position: absolute; bottom: 50px; left: 28px; right: 28px;
+    background: #F7FAFC; color: #0F1419;
+    padding: 17px; border-radius: 16px;
+    font-size: 16px; font-weight: 600;
+    text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    z-index: 20;
+  }
+  .cta:hover { transform: translateY(-2px); }
+  .cta:active { transform: scale(0.98); }
+  .home-indicator {
+    position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+    width: 134px; height: 5px; background: rgba(255,255,255,0.4); border-radius: 3px;
+    z-index: 50;
+  }
+  .dots {
+    position: absolute; bottom: 130px; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 6px;
+    z-index: 30;
+  }
+  .dot {
+    width: 6px; height: 6px; border-radius: 3px;
+    background: rgba(255,255,255,0.15);
+    transition: all 0.3s ease;
+  }
+  .dot.active { width: 22px; background: #5A9BD4; }
+
+  /* ========== СЛАЙД 1: ПАДАЮЩИЕ КАРТОЧКИ ========== */
+  .stage-1 {
+    position: absolute; top: 160px; left: 0; right: 0; height: 280px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cards-wrapper { position: relative; width: 280px; height: 240px; }
+  .card {
+    position: absolute; left: 50%;
+    width: 260px; padding: 16px 20px;
+    background: rgba(30, 37, 48, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(123, 176, 221, 0.15);
+    border-radius: 18px;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.02) inset;
+    transform-origin: center top;
+    opacity: 0;
+  }
+  .card-inner { display: flex; align-items: center; gap: 12px; }
+  .card-check {
+    width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card-check.done { background: #68C58F; }
+  .card-check.pending {
+    background: rgba(255,255,255,0.04);
+    border: 1.5px dashed rgba(255,255,255,0.25);
+  }
+  .check-icon { width: 12px; height: 10px; }
+  .card-text { font-size: 15px; color: #F7FAFC; font-weight: 500; flex: 1; }
+  .card-text.muted { color: #B4C0CE; font-weight: 400; }
+  .card-photo-icon { font-size: 14px; opacity: 0.5; }
+
+  .card-1 { top: 10px;  transform: translateX(-50%) rotate(-3deg); }
+  .card-2 { top: 75px;  transform: translateX(calc(-50% + 8px)) rotate(0deg); z-index: 2; }
+  .card-3 { top: 140px; transform: translateX(calc(-50% - 4px)) rotate(2.5deg); z-index: 3; }
+
+  .slide.active .card-1 { animation: drop1 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards; }
+  .slide.active .card-2 { animation: drop2 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards; }
+  .slide.active .card-3 { animation: drop3 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s forwards; }
+
+  @keyframes drop1 {
+    0%   { opacity: 0; transform: translateX(-50%) translateY(-400px) rotate(-15deg); }
+    60%  { opacity: 1; }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0) rotate(-3deg); }
+  }
+  @keyframes drop2 {
+    0%   { opacity: 0; transform: translateX(calc(-50% + 8px)) translateY(-400px) rotate(8deg); }
+    60%  { opacity: 1; }
+    100% { opacity: 1; transform: translateX(calc(-50% + 8px)) translateY(0) rotate(0deg); }
+  }
+  @keyframes drop3 {
+    0%   { opacity: 0; transform: translateX(calc(-50% - 4px)) translateY(-400px) rotate(-10deg); }
+    60%  { opacity: 1; }
+    100% { opacity: 1; transform: translateX(calc(-50% - 4px)) translateY(0) rotate(2.5deg); }
+  }
+
+  /* ========== СЛАЙД 2: ПОЛЯРОИД ========== */
+  .stage-2 {
+    position: absolute; top: 160px; left: 0; right: 0; height: 320px;
+    display: flex; align-items: center; justify-content: center;
+    perspective: 1200px;
+  }
+  .polaroid {
+    position: relative; width: 220px;
+    background: #F7FAFC;
+    padding: 12px 12px 50px;
+    border-radius: 4px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(-300px) rotate(-25deg) scale(0.6);
+  }
+  .slide.active .polaroid {
+    animation: polaroidIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+  }
+  @keyframes polaroidIn {
+    0%   { opacity: 0; transform: translateY(-300px) rotate(-25deg) scale(0.6); }
+    70%  { opacity: 1; }
+    100% { opacity: 1; transform: translateY(0) rotate(-4deg) scale(1); }
+  }
+
+  .polaroid-photo {
+    width: 100%; aspect-ratio: 1;
+    background: #2D3748;
+    border-radius: 2px;
+    position: relative; overflow: hidden;
+  }
+  .polaroid-photo::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 40% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
+      linear-gradient(160deg, #4A5568 0%, #2D3748 50%, #1A202C 100%);
+    opacity: 0;
+  }
+  .slide.active .polaroid-photo::before {
+    animation: developPhoto 1s ease-out 1.0s forwards;
+  }
+  @keyframes developPhoto { to { opacity: 1; } }
+
+  .polaroid-door {
+    position: absolute; left: 50%; bottom: 0;
+    transform: translateX(-50%);
+    width: 80px; height: 130px;
+    opacity: 0;
+  }
+  .slide.active .polaroid-door {
+    animation: developPhoto 1s ease-out 1.2s forwards;
+  }
+
+  .stamp {
+    position: absolute; top: 24px; right: 22px;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #68C58F;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 12px rgba(104, 197, 143, 0.4);
+    opacity: 0; transform: scale(0.3) rotate(-30deg);
+  }
+  .slide.active .stamp {
+    animation: stampDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 1.5s forwards;
+  }
+  @keyframes stampDown {
+    0%   { opacity: 0; transform: scale(2) rotate(20deg); }
+    60%  { opacity: 1; transform: scale(0.85) rotate(-8deg); }
+    100% { opacity: 1; transform: scale(1) rotate(-5deg); }
+  }
+
+  .polaroid-caption {
+    position: absolute; bottom: 12px; left: 0; right: 0;
+    text-align: center;
+    font-size: 12px; color: #4A5568; font-weight: 500;
+    letter-spacing: 0.3px;
+    opacity: 0;
+  }
+  .slide.active .polaroid-caption {
+    animation: textIn 0.5s ease-out 1.7s forwards;
+  }
+
+  /* ========== СЛАЙД 3: СЦЕНА ДОМА ========== */
+  .stage-3 {
+    position: absolute; top: 140px; left: 0; right: 0; height: 320px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .scene-house {
+    position: relative; width: 320px; height: 280px;
+    opacity: 0; transform: scale(0.9);
+  }
+  .slide.active .scene-house {
+    animation: sceneIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+  }
+  @keyframes sceneIn { to { opacity: 1; transform: scale(1); } }
+
+  .scene-svg { width: 100%; height: 100%; }
+  .scene-window { opacity: 0; }
+  .slide.active .scene-window {
+    animation: windowGlow 1.5s ease-out 1.0s forwards;
+  }
+  @keyframes windowGlow {
+    0%   { opacity: 0; }
+    60%  { opacity: 1; }
+    100% { opacity: 0.95; }
+  }
+
+  .scene-star { opacity: 0; }
+  .slide.active .scene-star-1 { animation: twinkle 0.5s ease 0.8s forwards, twinkleLoop 3s ease-in-out 1.3s infinite; }
+  .slide.active .scene-star-2 { animation: twinkle 0.5s ease 1.0s forwards, twinkleLoop 3s ease-in-out 1.5s infinite; }
+  .slide.active .scene-star-3 { animation: twinkle 0.5s ease 1.2s forwards, twinkleLoop 3s ease-in-out 1.7s infinite; }
+  .slide.active .scene-star-4 { animation: twinkle 0.5s ease 1.4s forwards, twinkleLoop 3s ease-in-out 1.9s infinite; }
+  @keyframes twinkle { to { opacity: 1; } }
+  @keyframes twinkleLoop {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ========== УПРАВЛЕНИЕ ========== */
+  .controls {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 12px; z-index: 1000;
+  }
+  .ctrl-btn {
+    background: rgba(255,255,255,0.1); color: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 12px 18px; border-radius: 12px;
+    font-family: inherit; font-size: 14px; font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+  }
+  .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
+  .ctrl-btn.primary { background: #5A9BD4; }
+  .ctrl-btn.primary:hover { background: #4F86C6; }
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <div class="phone-notch"></div>
+
+  <div class="status-bar">
+    <span>9:57</span>
+    <div class="status-right">
+      <span style="font-size: 12px;">●●●</span>
+      <svg width="16" height="11" viewBox="0 0 16 11"><path d="M2 3 L8 9 L14 3" fill="none" stroke="#fff" stroke-width="1.5"/></svg>
+      <svg width="22" height="11" viewBox="0 0 22 11"><rect x="0" y="2" width="19" height="7" rx="1.5" fill="none" stroke="#fff" stroke-width="1"/><rect x="2" y="4" width="15" height="3" fill="#fff"/></svg>
+    </div>
+  </div>
+
+  <div class="top-area">
+    <div class="progress-track">
+      <div class="progress-fill" id="progress" style="width: 33%;"></div>
+    </div>
+    <a class="skip" onclick="skipAll()">Skip</a>
+  </div>
+
+  <div class="slides-container" id="slides">
+
+    <!-- СЛАЙД 1 -->
+    <div class="slide active" id="slide-0">
+      <div class="bg-glow"></div>
+      <div class="bg-glow-2"></div>
+      <div class="stage-1">
+        <div class="cards-wrapper">
+          <div class="card card-1">
+            <div class="card-inner">
+              <div class="card-check pending"></div>
+              <span class="card-text muted">Front door</span>
+            </div>
+          </div>
+          <div class="card card-2">
+            <div class="card-inner">
+              <div class="card-check done">
+                <svg class="check-icon" viewBox="0 0 12 10"><path d="M1 5 L4.5 8 L11 1" fill="none" stroke="#0F1419" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="card-text">Stove off</span>
+              <span class="card-photo-icon">📷</span>
+            </div>
+          </div>
+          <div class="card card-3">
+            <div class="card-inner">
+              <div class="card-check done">
+                <svg class="check-icon" viewBox="0 0 12 10"><path d="M1 5 L4.5 8 L11 1" fill="none" stroke="#0F1419" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="card-text">Windows closed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-area">
+        <h1 class="headline">Did I really<br>turn it off?</h1>
+        <p class="subline">Mark it once. We'll keep the proof.<br>You keep your evening.</p>
+      </div>
+    </div>
+
+    <!-- СЛАЙД 2 -->
+    <div class="slide" id="slide-1">
+      <div class="bg-glow"></div>
+      <div class="bg-glow-2"></div>
+      <div class="stage-2">
+        <div class="polaroid">
+          <div class="polaroid-photo">
+            <svg class="polaroid-door" viewBox="0 0 80 130">
+              <defs>
+                <linearGradient id="doorG" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#7BB0DD" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#4F86C6" stop-opacity="0.6"/>
+                </linearGradient>
+              </defs>
+              <path d="M 12 130 L 12 36 C 12 18, 22 8, 40 8 C 58 8, 68 18, 68 36 L 68 130 Z" fill="url(#doorG)"/>
+              <circle cx="55" cy="78" r="5" fill="#F7FAFC"/>
+              <rect x="53" y="80" width="4" height="10" fill="#F7FAFC"/>
+            </svg>
+          </div>
+          <div class="stamp">
+            <svg width="26" height="22" viewBox="0 0 26 22">
+              <path d="M3 11 L10 18 L23 4" fill="none" stroke="#0F1419" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="polaroid-caption">Today · 9:34 PM · Home</div>
+        </div>
+      </div>
+      <div class="text-area">
+        <h1 class="headline">Snap a photo<br>— and relax.</h1>
+        <p class="subline">A timestamped picture means<br>you don't have to wonder again.</p>
+      </div>
+    </div>
+
+    <!-- СЛАЙД 3: СЦЕНА ДОМА -->
+    <div class="slide" id="slide-2">
+      <div class="bg-glow"></div>
+      <div class="bg-glow-2"></div>
+      <div class="stage-3">
+        <div class="scene-house">
+          <svg class="scene-svg" viewBox="0 0 320 280">
+            <defs>
+              <linearGradient id="houseG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2A3441"/>
+                <stop offset="100%" stop-color="#1A202C"/>
+              </linearGradient>
+              <radialGradient id="windowG">
+                <stop offset="0%" stop-color="#FFE4A0"/>
+                <stop offset="100%" stop-color="#E8B860"/>
+              </radialGradient>
+            </defs>
+
+            <circle class="scene-star scene-star-1" cx="60" cy="40" r="1.5" fill="#fff"/>
+            <circle class="scene-star scene-star-2" cx="240" cy="55" r="1.2" fill="#fff"/>
+            <circle class="scene-star scene-star-3" cx="280" cy="90" r="1" fill="#fff"/>
+            <circle class="scene-star scene-star-4" cx="40" cy="80" r="1.3" fill="#fff"/>
+
+            <circle cx="260" cy="40" r="20" fill="#F7FAFC" opacity="0.85"/>
+            <circle cx="252" cy="36" r="20" fill="#1A202C"/>
+
+            <path d="M 80 250 L 80 130 L 160 70 L 240 130 L 240 250 Z" fill="url(#houseG)" stroke="rgba(123, 176, 221, 0.2)" stroke-width="1.5"/>
+
+            <rect class="scene-window" x="135" y="160" width="50" height="50" rx="4" fill="url(#windowG)"/>
+            <line class="scene-window" x1="160" y1="160" x2="160" y2="210" stroke="rgba(45, 55, 72, 0.5)" stroke-width="1"/>
+            <line class="scene-window" x1="135" y1="185" x2="185" y2="185" stroke="rgba(45, 55, 72, 0.5)" stroke-width="1"/>
+
+            <rect x="148" y="215" width="24" height="35" rx="2" fill="#0F1419"/>
+            <circle cx="167" cy="232" r="1.5" fill="#7BB0DD"/>
+
+            <line x1="0" y1="250" x2="320" y2="250" stroke="rgba(123, 176, 221, 0.15)" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+      <div class="text-area">
+        <h1 class="headline">Locked up.<br>Sorted.</h1>
+        <p class="subline">You did everything you needed to.<br>Now actually relax.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <div class="cta" onclick="next()">
+    <span id="cta-text">Continue</span>
+    <svg width="16" height="14" viewBox="0 0 24 24"><path d="M5 12 L19 12 M13 6 L19 12 L13 18" fill="none" stroke="#0F1419" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+
+  <div class="home-indicator"></div>
+</div>
+
+<div class="controls">
+  <button class="ctrl-btn" onclick="prev()">← Prev</button>
+  <button class="ctrl-btn primary" onclick="replay()">↻ Replay slide</button>
+  <button class="ctrl-btn" onclick="next()">Next →</button>
+</div>
+
+<script>
+  let current = 0;
+  const total = 3;
+
+  function goTo(index) {
+    if (index < 0 || index > total - 1) return;
+    const dots = document.querySelectorAll('.dot');
+    const container = document.getElementById('slides');
+    const progress = document.getElementById('progress');
+    const ctaText = document.getElementById('cta-text');
+
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+
+    container.style.transform = `translateX(-${index * 390}px)`;
+    progress.style.width = `${((index + 1) / total) * 100}%`;
+    ctaText.textContent = index === total - 1 ? 'Get started' : 'Continue';
+
+    setTimeout(() => {
+      const newSlide = document.getElementById(`slide-${index}`);
+      const clone = newSlide.cloneNode(true);
+      newSlide.parentNode.replaceChild(clone, newSlide);
+      clone.classList.add('active');
+      dots[index].classList.add('active');
+    }, 50);
+
+    current = index;
+  }
+
+  function next() {
+    if (current === total - 1) return;
+    goTo(current + 1);
+  }
+  function prev() { goTo(current - 1); }
+  function replay() { goTo(current); }
+  function skipAll() { goTo(total - 1); }
+
+  let startX = 0;
+  const phoneEl = document.querySelector('.phone');
+  phoneEl.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+  phoneEl.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (dx < -50) next(); else if (dx > 50) prev();
+  });
+  let mouseDownX = null;
+  phoneEl.addEventListener('mousedown', e => mouseDownX = e.clientX);
+  phoneEl.addEventListener('mouseup', e => {
+    if (mouseDownX === null) return;
+    const dx = e.clientX - mouseDownX;
+    if (dx < -50) next(); else if (dx > 50) prev();
+    mouseDownX = null;
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'r' || e.key === 'R') replay();
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Нужно создать экраны для фичи Сетка плей-офф, бэк ещё не готов, пока на моках",
+    "should_trigger": true
+  },
+  {
+    "query": "scaffold a new feature called Notifications with a list screen and detail screen, backend isn't ready yet so use mock data",
+    "should_trigger": true
+  },
+  {
+    "query": "сделай UI для дуэлей прогнозистов — экран вызова и экран результатов. Данные пока замокай",
+    "should_trigger": true
+  },
+  {
+    "query": "create feature screens for head-to-head player comparison with mock data, need to show two player cards and their stats",
+    "should_trigger": true
+  },
+  {
+    "query": "нужна фича \"Мои награды\" — список наград и детальный экран. Cloud Functions пока нет, замокай данные в модели",
+    "should_trigger": true
+  },
+  {
+    "query": "build the UI for a match chat feature, I'll wire up Firestore later, just put some fake messages for now",
+    "should_trigger": true
+  },
+  {
+    "query": "хочу набросать экраны для челленджей недели, бэк будет через неделю, пока на моках погнали",
+    "should_trigger": true
+  },
+  {
+    "query": "create a new screen for viewing the match calendar with a month grid and match cards, no backend yet",
+    "should_trigger": true
+  },
+  {
+    "query": "создай фичу рейтинга бомбардиров — данные из Firestore коллекции topScorers и Cloud Function getTopScorers, плюс экран списка",
+    "should_trigger": false
+  },
+  {
+    "query": "мне нужно подключить реальные данные для уведомлений — Firestore коллекция notifications и триггер onNotificationCreated",
+    "should_trigger": false
+  },
+  {
+    "query": "create a reusable gradient card widget for the design system",
+    "should_trigger": false
+  },
+  {
+    "query": "сделай виджет MatchCountdownTimer для core_ui с вариантами large и small",
+    "should_trigger": false
+  },
+  {
+    "query": "нужно полностью сделать фичу комментариев к матчам — и Firestore коллекцию comments и экраны",
+    "should_trigger": false
+  },
+  {
+    "query": "fix the bug in the prediction dialog where the score buttons don't update",
+    "should_trigger": false
+  },
+  {
+    "query": "подключи Firestore репозиторий для лиг, экраны уже есть",
+    "should_trigger": false
+  },
+  {
+    "query": "add pagination to the existing leaderboard screen",
+    "should_trigger": false
+  },
+  {
+    "query": "create DTO and mapper for the matches Firestore collection",
+    "should_trigger": false
+  },
+  {
+    "query": "refactor the predictions cubit to use a service layer instead of direct repository calls",
+    "should_trigger": false
+  },
+  {
+    "query": "напиши тесты для PredictionsCubit",
+    "should_trigger": false
+  },
+  {
+    "query": "add dark mode support to the AppScaffold widget",
+    "should_trigger": false
+  }
+]

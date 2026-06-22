@@ -1,0 +1,25 @@
+{
+  "skill_name": "create-widget",
+  "evals": [
+    {"id": 1, "query": "создай виджет AppGradientBorderCard с вариантами primary и secondary для дизайн-системы", "should_trigger": true},
+    {"id": 2, "query": "need a reusable TeamLogoBadge widget in core_ui that shows a team logo with optional live indicator dot", "should_trigger": true},
+    {"id": 3, "query": "сделай компонент PredictionScoreStepper — выбор счёта матча кнопками плюс/минус, с состоянием disabled", "should_trigger": true},
+    {"id": 4, "query": "create a MatchCountdownBadge widget — pill with time until kickoff, switches to a LIVE variant when the match starts", "should_trigger": true},
+    {"id": 5, "query": "нужен виджет AppCheckbox — чекбокс в стиле дизайн-системы с состояниями checked/unchecked/disabled", "should_trigger": true},
+    {"id": 6, "query": "build a reusable confirmation bottom sheet component on top of BaseBottomSheet with title and two action buttons", "should_trigger": true},
+    {"id": 7, "query": "создай RankChip — маленький чип с местом в таблице лидеров, варианты: gold, silver, bronze, default", "should_trigger": true},
+    {"id": 8, "query": "make a shared AppExpandableCard component with animated expand/collapse and header slot", "should_trigger": true},
+    {"id": 9, "query": "создай UI для фичи быстрых прогнозов с мок-данными — список матчей с вводом счёта", "should_trigger": false},
+    {"id": 10, "query": "build the full leagues feature with Firestore integration and league list screen", "should_trigger": false},
+    {"id": 11, "query": "подключи Firestore для достижений — DTO, маппер, репозиторий", "should_trigger": false},
+    {"id": 12, "query": "create a new feature screen for viewing a user's prediction history", "should_trigger": false},
+    {"id": 13, "query": "fix the overflow issue in the existing SegmentedTabBar when there are too many tabs", "should_trigger": false},
+    {"id": 14, "query": "change the color of the existing AppScaffold back button from white to orange", "should_trigger": false},
+    {"id": 15, "query": "add a getStandings call to the match repository via the Cloud Function endpoint", "should_trigger": false},
+    {"id": 16, "query": "create cubit and state for the leaderboard feature", "should_trigger": false},
+    {"id": 17, "query": "scaffold the onboarding screens with page view and progress dots, mock data", "should_trigger": false},
+    {"id": 18, "query": "write a custom SliverPersistentHeaderDelegate for the profile header animation", "should_trigger": false},
+    {"id": 19, "query": "add localization strings for the auth form", "should_trigger": false},
+    {"id": 20, "query": "refactor AppDimens to add new spacing tokens for the redesign", "should_trigger": false}
+  ]
+}

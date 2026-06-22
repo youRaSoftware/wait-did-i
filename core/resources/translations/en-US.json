@@ -8,14 +8,15 @@
   },
   "onboarding": {
     "skip": "Skip",
-    "next": "Next",
-    "start": "Start",
-    "step1Title": "Did I really turn it off?",
-    "step1Subtitle": "Locked the door? Turned off the stove? Stop going back to check.",
-    "step2Title": "Snap a photo — and relax",
-    "step2Subtitle": "Mark actions with a photo confirmation. It's saved with time and place — you can always look back.",
-    "step3Title": "Everything in its place",
-    "step3Subtitle": "Lists for Home, Car, Office. Contexts \"Leaving\" and \"Before bed\" — so you don't forget a thing."
+    "continueLabel": "Continue",
+    "getStarted": "Get started",
+    "slide1Title": "Did I really\nturn it off?",
+    "slide1Subtitle": "Mark it once. We'll keep the proof.\nYou keep your evening.",
+    "slide2Title": "Snap a photo\n— and relax.",
+    "slide2Subtitle": "A timestamped picture means\nyou don't have to wonder again.",
+    "slide2PolaroidCaption": "Today · 9:34 PM · Home",
+    "slide3Title": "Locked up.\nSorted.",
+    "slide3Subtitle": "You did everything you needed to.\nNow actually relax."
   },
   "home": {
     "greeting": "Hi 👋",

@@ -6,7 +6,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppThemeProvider(
-      initialTokens: LightTokens(),
+      // Dark is the default theme; a light-theme toggle will live in Settings later.
+      initialTokens: DarkTokens(),
       builder: (BuildContext context) {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
