@@ -13,8 +13,8 @@ abstract class ExampleModel with _$ExampleModel {
   const ExampleModel._();
 
   factory ExampleModel.empty() => const ExampleModel(
-        id: '',
-        title: '',
-        description: '',
-      );
+    id: '',
+    title: '',
+    description: '',
+  );
 }

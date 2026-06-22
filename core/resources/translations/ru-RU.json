@@ -19,13 +19,44 @@
     "slide3Subtitle": "Ты сделал всё, что нужно.\nТеперь правда можно выдохнуть."
   },
   "home": {
-    "greeting": "Привет 👋",
-    "emptyTitle": "Пока пусто",
-    "emptySubtitle": "Создай первый список — нажми +",
-    "createSoon": "Создание списка — скоро"
+    "greetEmpty": "Wait, Did I?",
+    "greetMorning": "Доброе утро",
+    "greetAfternoon": "Привет",
+    "greetEvening": "Добрый вечер",
+    "greetNight": "Пора отдыхать",
+    "greetChecking": "Уходишь?",
+    "greetAllClear": "Всё чисто",
+    "subEmpty": "Давай начнём.",
+    "subMorning": "Быстрая проверка перед выходом?",
+    "subAfternoon": "Что-нибудь проверить?",
+    "subEvening": "Ничего срочного — не спеши.",
+    "subNight": "Время для вечерней проверки?",
+    "subChecking": "Один короткий список — и готово.",
+    "subAllClear": "Хорошего вечера.",
+    "checkedCount": "{done} из {total} отмечено",
+    "notCheckedYet": "Ещё не проверяли",
+    "lastChecked": "Проверено {time}",
+    "justNow": "только что",
+    "minutesAgo": "{count} мин назад",
+    "hoursAgo": "{count} ч назад",
+    "daysAgo": "{count} дн назад",
+    "tapToCheck": "Нажми, чтобы отметить",
+    "metaPhotoRecommended": "Можно с фото",
+    "withPhoto": "с фото",
+    "emptyTitle": "Первый список готов",
+    "emptyText": "Начни с «Выход из дома»\nили собери свой с нуля.",
+    "emptyCta": "Добавить первый список",
+    "hintTitleStart": "Хорошее начало",
+    "hintTitleAlmost": "Почти готово",
+    "hintTitleDone": "Всё готово",
+    "hintSubDone": "Хорошего вечера.",
+    "hintSubOne": "Остался один.",
+    "hintSubMany": "Осталось {count}.",
+    "addListSoon": "Добавление списков — скоро"
   },
   "settings": {
     "title": "Настройки",
-    "soon": "Скоро"
+    "soon": "Скоро",
+    "theme": "Тема"
   }
 }

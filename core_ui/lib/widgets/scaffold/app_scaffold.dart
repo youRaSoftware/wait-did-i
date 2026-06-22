@@ -60,7 +60,8 @@ class AppScaffold extends StatelessWidget {
                   padding: EdgeInsets.only(top: systemPadding.top),
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(minHeight: appBarContentHeight),
-                    child: appBar ??
+                    child:
+                        appBar ??
                         CustomAppBar(
                           showBackButton: showBackButton,
                           leading: leading,

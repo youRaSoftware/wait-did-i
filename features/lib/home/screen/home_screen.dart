@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 import '../cubit/home_cubit.dart';
@@ -10,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomeCubit>(
-      create: (BuildContext context) => HomeCubit()..init(),
+      create: (BuildContext context) => HomeCubit(repository: appLocator<ChecklistRepository>())..load(),
       child: const HomeForm(),
     );
   }

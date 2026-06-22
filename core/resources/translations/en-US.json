@@ -19,13 +19,44 @@
     "slide3Subtitle": "You did everything you needed to.\nNow actually relax."
   },
   "home": {
-    "greeting": "Hi 👋",
-    "emptyTitle": "Nothing yet",
-    "emptySubtitle": "Create your first list — tap +",
-    "createSoon": "List creation — coming soon"
+    "greetEmpty": "Wait, Did I?",
+    "greetMorning": "Good morning",
+    "greetAfternoon": "Hey there",
+    "greetEvening": "Good evening",
+    "greetNight": "Wind down",
+    "greetChecking": "Heading out?",
+    "greetAllClear": "All clear",
+    "subEmpty": "Let's get started.",
+    "subMorning": "A quick check before you head out?",
+    "subAfternoon": "Anything to verify?",
+    "subEvening": "Nothing pressing — take your time.",
+    "subNight": "Time for the bedtime check?",
+    "subChecking": "One quick list to clear.",
+    "subAllClear": "Have a good one.",
+    "checkedCount": "{done} of {total} checked",
+    "notCheckedYet": "Not checked yet",
+    "lastChecked": "Last checked {time}",
+    "justNow": "just now",
+    "minutesAgo": "{count} min ago",
+    "hoursAgo": "{count} h ago",
+    "daysAgo": "{count} d ago",
+    "tapToCheck": "Tap to check",
+    "metaPhotoRecommended": "Photo recommended",
+    "withPhoto": "with photo",
+    "emptyTitle": "Your first list is ready",
+    "emptyText": "Start with «Leaving home» or\nbuild your own from scratch.",
+    "emptyCta": "Add your first list",
+    "hintTitleStart": "Good start",
+    "hintTitleAlmost": "Almost there",
+    "hintTitleDone": "All done",
+    "hintSubDone": "Have a good evening.",
+    "hintSubOne": "One more to go.",
+    "hintSubMany": "{count} more to go.",
+    "addListSoon": "Adding lists — coming soon"
   },
   "settings": {
     "title": "Settings",
-    "soon": "Coming soon"
+    "soon": "Coming soon",
+    "theme": "Theme"
   }
 }

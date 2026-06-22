@@ -6,8 +6,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppThemeProvider(
-      // Dark is the default theme; a light-theme toggle will live in Settings later.
-      initialTokens: DarkTokens(),
+      // Persisted theme mode (System / Light / Dark). Defaults to Dark; the user
+      // changes it in Settings. Only "System" follows the device appearance.
+      initialMode: appLocator<ThemeService>().mode,
+      onModeChanged: appLocator<ThemeService>().setMode,
       builder: (BuildContext context) {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,

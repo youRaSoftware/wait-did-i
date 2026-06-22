@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../config/app_config.dart';
 import '../config/network/dio_config.dart';
 import '../service/onboarding_service.dart';
+import '../service/theme_service.dart';
 
 // Shared GetIt instance - used across all packages
 final GetIt appLocator = GetIt.instance;
@@ -41,6 +42,7 @@ Future<void> setupUnAuthScope(Flavor flavor) async {
       // 4.1 Local key-value storage + onboarding flag (drives router redirect)
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       appLocator.registerSingleton<OnboardingService>(OnboardingService(prefs));
+      appLocator.registerSingleton<ThemeService>(ThemeService(prefs));
 
       // 5. Initialize data layer (pre-login dependencies)
       await dataDI.preLoginScope();

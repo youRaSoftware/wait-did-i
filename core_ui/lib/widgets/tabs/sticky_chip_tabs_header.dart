@@ -39,8 +39,6 @@ class StickyChipTabsHeader extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(StickyChipTabsHeader old) {
-    return old.selectedId != selectedId ||
-        old.items.length != items.length ||
-        old.backgroundColor != backgroundColor;
+    return old.selectedId != selectedId || old.items.length != items.length || old.backgroundColor != backgroundColor;
   }
 }

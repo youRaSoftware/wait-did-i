@@ -5,6 +5,85 @@
 
 ---
 
+## 2026-06-22 — Тема: System / Light / Dark в настройках (персист)
+
+**Задача:** Добавить в настройки выбор темы. Раньше провайдер темы принудительно следовал
+системной яркости (перебивал dark-дефолт) и выбор не сохранялся между запусками.
+
+### Что сделано
+
+- ✅ `ThemeService` (core, SharedPreferences) — хранит `ThemeModeEnum` (system / light / dark),
+  дефолт **dark**; зарегистрирован в `app_di` (тот же prefs, что у `OnboardingService`).
+- ✅ `AppThemeProvider` переписан на режимы: `initialMode` + `onModeChanged`; `_resolveTokens`
+  (system → яркость платформы, light/dark → фикс). `didChangePlatformBrightness` следует системе
+  **только** в режиме `system`. `AppTheme` отдаёт `mode` + `setThemeMode`; в extension добавлены
+  `context.themeMode` / `context.setThemeMode`. `toggleTheme` / `switchTheme` / `setTheme` сохранены
+  (через режимы) — витрина не сломана. Заодно убран deprecated `window.platformBrightness`
+  (→ `platformDispatcher`) — ушли и предсуществующие deprecation-варнинги.
+- ✅ `lib/app.dart` — `initialMode: appLocator<ThemeService>().mode`,
+  `onModeChanged: appLocator<ThemeService>().setMode`.
+- ✅ `features/lib/settings/screen/settings_form.dart` — секция «Тема»: `SettingsTileSection` с тремя
+  `SettingsTile` (System / Light / Dark; активный помечен галочкой в акценте), тап →
+  `context.setThemeMode`. Лейблы — существующие `common.system/light/dark`; добавлен `settings.theme`.
+
+### Проверка
+
+- Перегенерированы ключи; `flutter analyze` — 0 по нашему коду (остаются предсуществующие removed-lint
+  в `analysis_options.yaml`). `dart format` — ок.
+- 🚧 Прогон (нужен **hot restart**, т.к. меняется bootstrap/DI): Settings → Light → весь app светлеет
+  мгновенно; kill/relaunch — выбор сохранён; System — следует системе; дефолт на чистой установке — Dark.
+
+---
+
+## 2026-06-22 — Главный экран (активный чек-лист) + hive_ce
+
+**Задача:** Реализовать главный экран по `.claude/specs/home/`: активный чек-лист сразу при
+запуске, три состояния (empty / idle / checking), табы списков, анимированные чекбоксы,
+прогресс-бар, bottom hint, FAB. Хранение — hive_ce.
+
+### Решения
+
+- ✅ Главный экран — **themed** (токены `context.currentTokens.color`), не локальная палитра.
+  Dark-значения токенов совпадают с эталоном → выглядит как спека, при светлой теме адаптируется.
+- ✅ Чистая архитектура: domain Freezed-модели + интерфейс репо; data hive_ce (entities + адаптеры
+  через `@GenerateAdapters` + mapper + provider + impl); DI + `Hive.initFlutter` в `dataDI.preLoginScope`.
+  Кубит — конструктор-инъекция репозитория (screen резолвит `appLocator<ChecklistRepository>`).
+- ✅ Сид трёх стартовых списков — Home (Leaving home) / Bed (Before bed) / Car — один раз
+  (флаг seed `v2` в Hive). Появляется таб-свитчер; empty-состояние достижимо, если удалить все.
+- ✅ Переключение списков — `PageView` (свайп + плавный горизонтальный слайд); тап по табу
+  анимирует страницу (`animateToPage`), свайп обновляет активный таб (`onPageChanged`). `HomeForm`
+  стал `StatefulWidget` ради `PageController`. (Был резкий `AnimatedSwitcher`-fade.)
+- ✅ `ListSwitcher` переписан: единая «пилюля», которая едет по позиции `PageController`
+  (`AnimatedBuilder`), отслеживая свайп; цвет лейблов интерполируется. Раньше каждый таб
+  анимировал свой фон/тень независимо (`AnimatedContainer`) — это и давало «моргание».
+- ✅ Greeting по времени суток + состоянию; allDone-приветствие на ~3с, потом обратно в idle.
+- ⚠️ Фото-флоу, экран добавления списка, детальный экран — заглушки (snackbar); модель готова под фото.
+- ⚠️ Имена дефолтного списка/пунктов — английские (редактируемый контент; UI-чрома локализована).
+
+### Файлы
+
+- **domain:** `models/checklist/{checklist_model,checklist_item_model}.dart` (Freezed),
+  `repositories/checklist_repository.dart`, барелы.
+- **data:** `entities/{checklist_entity,checklist_item_entity}.dart`, `hive/hive_adapters.dart`
+  (+ сгенерированные `hive_adapters.g.dart` / `hive_registrar.g.dart`),
+  `providers/hive/checklist_hive_provider.dart`, `mappers/checklist/checklist_mapper.dart`,
+  `repositories/checklist_repository_impl.dart`, `di/data_di.dart` (Hive init + регистрация),
+  `pubspec.yaml` (+ `hive_ce`, `hive_ce_flutter`, dev `hive_ce_generator`).
+- **features/home:** `cubit/{home_cubit,home_state}.dart` (переписаны),
+  `screen/{home_screen,home_form}.dart`, `widgets/` (greeting_header, list_switcher, checklist_view,
+  checklist_item, home_progress_line, bottom_hint, add_fab, home_empty_state, home_background_glow).
+- **Локализация:** блок `home.*` заменён на новый набор (greetings / прогресс / мета / пусто / хинты),
+  EN финал + RU черновик; перегенерирован `locale_keys.g.dart`.
+
+### Проверка
+
+- `flutter pub get --offline` (hive_ce из кэша), build_runner в domain + data — ок.
+- `flutter analyze` — 0 замечаний по новому коду (остаются предсуществующие removed-lint в
+  `analysis_options.yaml` и deprecated `window` в `theme_provider.dart`). `dart format` — ок.
+- 🚧 Прогон на симуляторе, сверка с `reference.html`, проверка персиста (kill/relaunch) — за пользователем.
+
+---
+
 ## 2026-06-22 — Разбор корня: специи фич в `.claude/specs/`, бриф влит в PLAN.md
 
 **Задача:** Перестать кидать спеки/эталоны и версионные `CLAUDE_N.md` в корень.

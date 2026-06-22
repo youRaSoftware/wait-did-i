@@ -38,7 +38,8 @@ class BaseContextMenu extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       padding: EdgeInsets.zero,
       itemBuilder: (BuildContext context) => _buildEntries(),
-      child: trigger ??
+      child:
+          trigger ??
           const AppCircleButton(
             size: AppCircleButtonSize.medium,
             icon: Icon(Icons.more_horiz),
