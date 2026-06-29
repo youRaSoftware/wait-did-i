@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 
 import '../../theme/app_dimens.dart';
 import '../../theme/app_theme.dart';
+import '../buttons/app_tappable.dart';
 import 'app_input_field.dart';
 
 /// Search field with a cancel button.
-class AppSearchField extends StatefulWidget {
+class AppSearchField extends StatelessWidget {
   final bool autofocus;
   final String? hintText;
   final String cancelText;
@@ -28,32 +29,6 @@ class AppSearchField extends StatefulWidget {
   });
 
   @override
-  State<AppSearchField> createState() => _AppSearchFieldState();
-}
-
-class _AppSearchFieldState extends State<AppSearchField> {
-  bool _isCancelPressed = false;
-
-  void _onTapDown(TapDownDetails details) {
-    setState(() {
-      _isCancelPressed = true;
-    });
-  }
-
-  void _onTapUp(TapUpDetails details) {
-    setState(() {
-      _isCancelPressed = false;
-    });
-    widget.onCancel?.call();
-  }
-
-  void _onTapCancel() {
-    setState(() {
-      _isCancelPressed = false;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     final ColorTokens color = context.currentTokens.color;
     final TextStyleTokens textStyle = context.currentTokens.textStyle;
@@ -63,29 +38,22 @@ class _AppSearchFieldState extends State<AppSearchField> {
         Expanded(
           child: AppInputField(
             size: AppInputFieldSize.medium,
-            autofocus: widget.autofocus,
-            hintText: widget.hintText,
-            controller: widget.controller,
-            focusNode: widget.focusNode,
+            autofocus: autofocus,
+            hintText: hintText,
+            controller: controller,
+            focusNode: focusNode,
             textInputAction: TextInputAction.search,
-            onChanged: widget.onChanged,
-            onSubmitted: widget.onSubmitted,
+            onChanged: onChanged,
+            onSubmitted: onSubmitted,
           ),
         ),
-        if (widget.onCancel != null) ...<Widget>[
+        if (onCancel != null) ...<Widget>[
           const SizedBox(width: AppDimens.padding12),
-          GestureDetector(
-            onTapDown: _onTapDown,
-            onTapUp: _onTapUp,
-            onTapCancel: _onTapCancel,
-            behavior: HitTestBehavior.opaque,
-            child: AnimatedOpacity(
-              opacity: _isCancelPressed ? AppDimens.opacity5 : 1.0,
-              duration: const Duration(milliseconds: 100),
-              child: Text(
-                widget.cancelText,
-                style: textStyle.button.copyWith(color: color.colorBrandCoral),
-              ),
+          AppTappable(
+            onTap: onCancel,
+            child: Text(
+              cancelText,
+              style: textStyle.button.copyWith(color: color.colorBrandCoral),
             ),
           ),
         ],

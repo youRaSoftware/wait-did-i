@@ -75,8 +75,9 @@ class ListSwitcher extends StatelessWidget {
                       // 1 when the pill sits under this tab, fading to 0 as it slides away.
                       final double t = (1 - (page - i).abs()).clamp(0.0, 1.0);
                       return Expanded(
-                        child: GestureDetector(
-                          behavior: HitTestBehavior.opaque,
+                        child: AppTappable(
+                          haptic: AppHaptic.selection,
+                          enableScale: false,
                           onTap: () => onTap(i),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_dimens.dart';
 import '../../theme/app_theme.dart';
+import '../buttons/app_tappable.dart';
 
 /// Equal-width segmented tab strip with the active item filled in the accent.
 class SegmentedTabBar extends StatelessWidget {
@@ -34,9 +35,10 @@ class SegmentedTabBar extends StatelessWidget {
         children: List<Widget>.generate(labels.length, (int index) {
           final bool isSelected = selectedIndex == index;
           return Expanded(
-            child: GestureDetector(
+            child: AppTappable(
+              haptic: AppHaptic.selection,
+              enableScale: false,
               onTap: () => onTabChanged(index),
-              behavior: HitTestBehavior.opaque,
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
                 padding: const EdgeInsets.symmetric(vertical: AppDimens.padding10),

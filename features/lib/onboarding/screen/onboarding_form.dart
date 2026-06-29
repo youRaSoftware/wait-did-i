@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -87,8 +88,7 @@ class _OnboardingFormState extends State<OnboardingForm> {
                         duration: const Duration(milliseconds: 200),
                         child: IgnorePointer(
                           ignoring: state.isLast,
-                          child: GestureDetector(
-                            behavior: HitTestBehavior.opaque,
+                          child: AppTappable(
                             onTap: () => _skip(state),
                             child: Text(LocaleKeys.onboarding_skip.tr(), style: OnboardingText.skip),
                           ),

@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -11,11 +10,8 @@ class AddFab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorTokens color = context.currentTokens.color;
-    return GestureDetector(
-      onTap: () {
-        HapticService.lightImpact();
-        onTap();
-      },
+    return AppTappable(
+      onTap: onTap,
       child: Container(
         width: 60,
         height: 60,

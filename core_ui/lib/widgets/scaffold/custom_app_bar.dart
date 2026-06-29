@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_dimens.dart';
 import '../../theme/app_theme.dart';
+import '../buttons/app_tappable.dart';
 
 /// Navigation bar with optional back button, centered title and actions.
 class CustomAppBar extends StatelessWidget {
@@ -36,9 +37,8 @@ class CustomAppBar extends StatelessWidget {
             children: <Widget>[
               leading ??
                   (showBackButton
-                      ? GestureDetector(
+                      ? AppTappable(
                           onTap: onBack ?? () => Navigator.of(context).pop(),
-                          behavior: HitTestBehavior.opaque,
                           child: Icon(
                             Icons.arrow_back_ios_new,
                             size: AppDimens.size24,

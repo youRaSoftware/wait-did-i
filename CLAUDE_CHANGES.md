@@ -5,6 +5,42 @@
 
 ---
 
+## 2026-06-29 — Единый haptic + эффект нажатия (вдавливание) для всех кнопок
+
+**Задача:** Добавить всем тапабельным элементам haptic-отклик и эффект вдавливания
+(press-scale). В проекте все тапы — это «голые» `GestureDetector` (Material/Cupertino-кнопок
+нет), `HapticService` уже существовал, а `AppButton`/`AppCircleButton` уже делали haptic+scale
+инлайном. Часть тапов вообще не имела обратной связи.
+
+### Что сделано
+
+- ✅ Новый виджет `core_ui/lib/widgets/buttons/app_tappable.dart` — `AppTappable`: единый
+  источник tap-отклика. `GestureDetector` (onTapDown/Up/Cancel) + `AnimatedScale` (press-scale,
+  дефолт **0.95**, 100ms `easeOut`) + `HapticService` через enum `AppHaptic`
+  (none/light/medium/heavy/selection). `onTap == null` → задизейблено (нет ни scale, ни haptic).
+  Флаг `enableScale: false` для селекторов, чтобы scale не конфликтовал с их собственной
+  анимацией выделения. Экспортирован из `widgets.dart`.
+- ✅ Заполнены «пробелы» (action-кнопки → haptic + scale), мигрированы на `AppTappable`:
+  `settings_tile`, `toast_widget`, `app_input_field` (показ пароля → `selection`, очистка →
+  `light`), `app_search_field` (Cancel; стал `StatelessWidget`, убран ручной press-state и
+  `AnimatedOpacity`), `custom_app_bar` (back), `greeting_header` (шестерёнка), `add_fab`,
+  `home_empty_state` (CTA), `onboarding_form` (Skip — добавлен импорт `core_ui`).
+- ✅ Селекторы (только haptic `selection`, без scale): `segmented_tab_bar`, `list_switcher`.
+- ✅ Убраны ставшие лишними прямые вызовы `HapticService` и неиспользуемые импорты `core`
+  (`add_fab`, `settings_tile`).
+- ⏸️ По решению пользователя **не трогали** `AppButton`, `AppCircleButton`, `OnboardingCtaButton`
+  (уже имеют нужный эффект) — рефакторинг на общий `AppTappable` отложен.
+- ⏸️ Намеренно оставлены как есть уже имеющие корректный отклик: `horizontal_chip_tabs`,
+  `app_bottom_nav_bar`, `app_line_tab_bar`, `checklist_item` (haptic во `home_cubit`).
+
+### Проверка
+
+- `fvm dart format --line-length=120` — ок (0 changed).
+- `fvm flutter analyze core_ui features` — **No issues found**.
+- 🚧 Ручной прогон на устройстве (ощущение haptic + scale) — за пользователем.
+
+---
+
 ## 2026-06-22 — Тема: System / Light / Dark в настройках (персист)
 
 **Задача:** Добавить в настройки выбор темы. Раньше провайдер темы принудительно следовал

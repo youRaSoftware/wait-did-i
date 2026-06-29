@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../../theme/app_dimens.dart';
 import '../../theme/app_theme.dart';
+import '../buttons/app_tappable.dart';
 
 enum AppInputFieldSize {
   /// 42px
@@ -238,7 +239,8 @@ class _AppInputFieldState extends State<AppInputField> {
                 ),
               ),
               if (_shouldShowPasswordToggle)
-                GestureDetector(
+                AppTappable(
+                  haptic: AppHaptic.selection,
                   onTap: _togglePasswordVisibility,
                   child: Padding(
                     padding: const EdgeInsets.only(right: AppDimens.padding14),
@@ -250,7 +252,7 @@ class _AppInputFieldState extends State<AppInputField> {
                   ),
                 )
               else if (_shouldShowClearButton)
-                GestureDetector(
+                AppTappable(
                   onTap: _clearText,
                   child: Padding(
                     padding: const EdgeInsets.only(right: AppDimens.padding14),

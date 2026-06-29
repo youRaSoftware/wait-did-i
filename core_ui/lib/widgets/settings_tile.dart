@@ -1,8 +1,8 @@
-import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../theme/app_dimens.dart';
 import '../theme/app_theme.dart';
+import 'buttons/app_tappable.dart';
 
 /// Single tile for use inside SettingsTileSection.
 class SettingsTile extends StatelessWidget {
@@ -26,14 +26,8 @@ class SettingsTile extends StatelessWidget {
     final ColorTokens colors = context.currentTokens.color;
     final TextStyleTokens textStyles = context.currentTokens.textStyle;
 
-    return GestureDetector(
-      onTap: () {
-        if (onTap != null) {
-          HapticService.lightImpact();
-          onTap!();
-        }
-      },
-      behavior: HitTestBehavior.opaque,
+    return AppTappable(
+      onTap: onTap,
       child: Row(
         children: <Widget>[
           if (leading != null) ...<Widget>[

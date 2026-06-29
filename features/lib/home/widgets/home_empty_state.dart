@@ -58,11 +58,8 @@ class HomeEmptyState extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          GestureDetector(
-            onTap: () {
-              HapticService.lightImpact();
-              onAdd();
-            },
+          AppTappable(
+            onTap: onAdd,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
               decoration: BoxDecoration(

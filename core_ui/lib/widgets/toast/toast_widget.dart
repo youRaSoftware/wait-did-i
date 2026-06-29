@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_dimens.dart';
 import '../../theme/app_theme.dart';
+import '../buttons/app_tappable.dart';
 
 enum ToastType { success, error, warning, info }
 
@@ -23,7 +24,7 @@ class ToastWidget extends StatelessWidget {
     final ColorTokens colors = context.currentTokens.color;
     final TextStyleTokens styles = context.currentTokens.textStyle;
 
-    return GestureDetector(
+    return AppTappable(
       onTap: onPressed,
       child: Container(
         constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.85),

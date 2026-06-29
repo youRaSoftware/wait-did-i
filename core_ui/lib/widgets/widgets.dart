@@ -5,6 +5,7 @@ export 'app_loader.dart';
 export 'bouncing_dots_loader.dart';
 export 'buttons/app_button.dart';
 export 'buttons/app_circle_button.dart';
+export 'buttons/app_tappable.dart';
 // Context menu
 export 'context_menu/base_context_menu.dart';
 export 'context_menu/context_menu_item.dart';

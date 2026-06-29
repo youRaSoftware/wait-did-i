@@ -54,8 +54,7 @@ class GreetingHeader extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 12),
-        GestureDetector(
-          behavior: HitTestBehavior.opaque,
+        AppTappable(
           onTap: onSettings,
           child: Container(
             width: 40,
