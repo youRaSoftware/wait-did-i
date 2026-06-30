@@ -18,9 +18,13 @@ class AppRouter {
   final GoRouter _router = GoRouter(
     navigatorKey: _navigatorKey,
     observers: <NavigatorObserver>[ScreenLogsRouteObserver()],
-    initialLocation: RouterConstants.homeRoute,
+    initialLocation: RouterConstants.splashRoute,
     // First-launch gate: until onboarding is completed, force users onto it.
     redirect: (BuildContext context, GoRouterState state) {
+      // The splash plays its intro then routes onward itself — let it through.
+      if (state.matchedLocation == RouterConstants.splashRoute) {
+        return null;
+      }
       final bool completed = appLocator<OnboardingService>().isCompleted;
       final bool goingToOnboarding = state.matchedLocation == RouterConstants.onboardingRoute;
 
@@ -33,6 +37,11 @@ class AppRouter {
       return null;
     },
     routes: <RouteBase>[
+      GoRoute(
+        path: RouterConstants.splashRoute,
+        name: RouterConstants.splashRoute,
+        builder: (BuildContext context, GoRouterState state) => const SplashScreen(),
+      ),
       GoRoute(
         path: RouterConstants.onboardingRoute,
         name: RouterConstants.onboardingRoute,

@@ -5,6 +5,55 @@
 
 ---
 
+## 2026-06-30 — Сплеш с разлетающейся фразой «WAIT, DID I..?»
+
+**Задача:** Добавить стартовый сплеш, где фраза `WAIT, DID I..?` несколько секунд
+разлетается буквами в разные стороны, после чего приложение само уходит на
+onboarding (первый запуск) или home.
+
+### Что сделано
+
+- ✅ Новая фича `features/lib/splash/` по структуре screen/form/cubit/widgets.
+- ✅ Анимация на одном `AnimationController` (3000 мс), три фазы по `progress`:
+  сборка (буквы появляются и «падают» в строку, стаггер слева-направо) →
+  пауза → разлёт (каждая буква летит по своему вектору, вращается и затухает).
+- ✅ Векторы разлёта детерминированы (функция от индекса буквы, без random) —
+  бурст одинаков при каждом запуске; «..?» подсвечены брендовым синим.
+- ✅ Сплеш стал стартовым роутом; исключён из first-launch redirect, навигацию
+  дальше решает `SplashCubit` через `AppRouter` (как в `OnboardingCubit`).
+- ✅ Фраза заведена через локализацию `splash.wordmark` (en-US/ru-RU) + регенерация ключей.
+
+### Изменённые / новые файлы
+
+- `features/lib/splash/screen/splash_screen.dart` — `BlocProvider<SplashCubit>` → форма.
+- `features/lib/splash/screen/splash_form.dart` — `StatefulWidget` с контроллером, по
+  завершении анимации зовёт `cubit.proceed()`.
+- `features/lib/splash/cubit/splash_cubit.dart` / `splash_state.dart` — навигация
+  onboarding/home, one-shot guard `_navigated`.
+- `features/lib/splash/widgets/splash_wordmark.dart` — разбор фразы на глифы и
+  per-glyph трансформы (сборка + разлёт).
+- `features/lib/splash/widgets/splash_background_glow.dart` — мягкое брендовое свечение.
+- `features/lib/splash/widgets/splash_colors.dart` — dark-only палитра сплеша.
+- `features/lib/features.dart` — экспорт `splash_screen.dart`.
+- `navigation/lib/src/app_router/router_constants.dart` — `splashRoute = '/splash'`.
+- `navigation/lib/src/app_router/app_router.dart` — `initialLocation` = splash, роут,
+  splash исключён из redirect-гейта.
+- `core/resources/translations/en-US.json`, `ru-RU.json` — ключ `splash.wordmark`.
+- `core/lib/localization/locale_keys.g.dart` — регенерирован.
+
+### Детали и решения
+
+- Сплеш и onboarding — намеренно dark-only вне зависимости от темы приложения;
+  у сплеша своя мини-палитра (`SplashColors`), как у `OnboardingColors` —
+  задокументированное исключение из правила «только токены».
+- `Transform` не влияет на layout: буквы держат свои слоты в `Row`, при разлёте
+  визуально уезжают за экран (travel = `longestSide * 1.15`) и затухают до навигации.
+
+### Дальнейшие шаги
+
+- При желании — заменить нативный `flutter_native_splash` плейсхолдер на бесшовный
+  переход в этот Flutter-сплеш (сейчас короткий нативный кадр перед первым кадром Flutter).
+
 ## 2026-06-29 — Единый haptic + эффект нажатия (вдавливание) для всех кнопок
 
 **Задача:** Добавить всем тапабельным элементам haptic-отклик и эффект вдавливания
